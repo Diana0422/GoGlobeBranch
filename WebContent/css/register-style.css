@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#bootstrap-override {
+    background-image: url(../res/images/macchu-picchu.jpg);
+}
+
+.registration-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    padding: 40px;
+    background-color: white;
+    margin-top: 80px;
+    border-radius: 8px;
+}
+
+.content-register {
+    background: none;
+}
+
+h1 {
+    margin-bottom: 40px;
+}
+
+.container {
+    display: flex;
+}
+
+.description {
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+}
+
+h2 {
+	text-align: center;
+	font-family: BarlowBold;
+	color: white;
+	max-height: fit-content;
+}

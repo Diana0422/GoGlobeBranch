@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="600.0" prefWidth="1336.0">
+         <children>
+            <Label fx:id="lblWelcome" layoutX="58.0" layoutY="49.0" prefHeight="53.0" prefWidth="1021.0" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Pane id="form" layoutX="38.0" layoutY="120.0" prefHeight="180.0" prefWidth="615.0">
+               <children>
+                  <Label layoutX="60.0" layoutY="32.0" prefHeight="117.0" prefWidth="311.0" text="Join an organized trip with other people" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button id="btn" fx:id="btnJoin" layoutX="460.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#forwardJoinTrip" text="Join a trip">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane id="form" layoutX="38.0" layoutY="347.0" prefHeight="180.0" prefWidth="615.0">
+               <children>
+                  <Label layoutX="61.0" layoutY="32.0" prefHeight="117.0" prefWidth="311.0" text="Plan your personal trip and share with the community" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button id="btn" fx:id="btnPlan" layoutX="456.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#forwardPlanTrip" text="Plan a trip">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Label id="info" alignment="CENTER" contentDisplay="CENTER" layoutX="853.0" layoutY="347.0" prefHeight="180.0" prefWidth="331.0" stylesheets="@css/application.css" text="Either you join an organized trip, or you plan your own, it's the journey that matters." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane id="form" layoutX="777.0" layoutY="120.0" prefHeight="180.0" prefWidth="484.0">
+               <children>
+                  <Label fx:id="lblPoints" layoutX="33.0" layoutY="44.0" prefHeight="92.0" prefWidth="240.0" text="You have 200 points.">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button id="btn" fx:id="btnGain" layoutX="323.0" layoutY="67.0" mnemonicParsing="false" onMouseClicked="#forwardGainPoints" prefHeight="46.0" prefWidth="119.0" text="Gain Points">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+         <stylesheets>
+            <URL value="@css/home.css" />
+            <URL value="@css/application.css" />
+         </stylesheets>
+      </AnchorPane>
+   </center>
+</BorderPane>

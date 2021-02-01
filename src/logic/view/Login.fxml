@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.LoginGraphic">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1336.0">
+         <children>
+            <AnchorPane id="login-box" layoutX="668.0" layoutY="128.0" prefHeight="344.0" prefWidth="364.0" styleClass="login-box">
+               <children>
+                  <TextField id="email_tf" fx:id="tfEmail" layoutX="26.0" layoutY="120.0" />
+                  <Label layoutX="26.0" layoutY="35.0" text="Login">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="100.0" text="Email address">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="172.0" text="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button id="btn" fx:id="btnSignin" layoutX="28.0" layoutY="266.0" mnemonicParsing="false" onAction="#forwardHome" prefHeight="45.0" prefWidth="74.0" styleClass="login-btn" text="Sign in" />
+                  <Label layoutX="112.0" layoutY="279.0" text="Don't have an account?">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button id="signup_btn" fx:id="btnSignup" layoutX="265.0" layoutY="276.0" mnemonicParsing="false" onAction="#forwardRegistration" text="Sign up" />
+                  <Label layoutX="28.0" layoutY="145.0" text="We'll never share your email with anyone else.">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <PasswordField id="psw_pf" fx:id="pfPassword" layoutX="28.0" layoutY="192.0" />
+                  <Label fx:id="lblError" layoutX="130.0" layoutY="49.0" prefHeight="17.0" prefWidth="186.0" text="Label" textFill="#e40f0f" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+         <stylesheets>
+            <URL value="@css/login.css" />
+            <URL value="@css/application.css" />
+         </stylesheets>
+      </AnchorPane>
+   </center>
+</BorderPane>

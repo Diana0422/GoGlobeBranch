@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="form" maxHeight="-Infinity" maxWidth="528.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="528.0" style="-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 5, 2) dropshadow(three-pass-box, grey, 10, 0, 5, 2); -fx-border-color: gray; -fx-border-radius: 20px;" stylesheets="@css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.ActivityCardGraphic">
+   <children>
+      <Text layoutX="10.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="75.53125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtDescription" layoutX="10.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="379.18211364746094" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="96.0">
+         <font>
+            <Font size="16.0" />
+         </font></Text>
+      <Text fx:id="txtTitle" layoutX="16.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="13.53125">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
+      <Text fx:id="txtTime" layoutX="16.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
+      <Text fx:id="txtActivityCost" layoutX="17.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+   </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
+</AnchorPane>

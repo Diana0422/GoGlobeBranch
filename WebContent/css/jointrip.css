@@ -1,0 +1,98 @@
+body {
+    font-family: BarlowMed;
+    background-image: linear-gradient(to top, rgba(245, 249, 252, 0), rgba(8, 27, 61, 0.73)),url(../res/images/japan-kyoto-toji-pagoda.jpg), no-repeat;
+    background-size: cover;
+    height: fit-content;
+    padding-bottom: 50px;
+}
+
+/*#bootstrap-override .content-join-trip, .row {
+    background-color: #8dd1c7;
+}*/
+
+#bootstrap-override .results {
+    padding-left: 30px;
+    padding-right: 10px;
+    float: left;
+    width: 80%;
+    height:100vh;
+}
+
+.trips {
+	 background: white;
+	 background-color: white;
+	 margin: 10px;
+	 border-radius: 10px;
+}
+
+.filler{
+	
+	padding-left: 30px;
+    padding-right: 10px;
+    float: left;
+    width: 80%;
+    height: 100vh;
+    background: white;
+}
+
+#bootstrap-override .filter-btns{
+	float: left;
+	width: 20%;
+	height: 100vh;
+	padding:20px;
+	background: rgba(255, 255, 255, 0.4);
+	position: absolute;
+    right: 0px;
+}
+
+#bootstrap-override .page-header, .search-bar {
+    padding: 30px;
+    display: flex;
+}
+
+#bootstrap-override .page-state, h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: BarlowBold;
+}
+
+#search-btn, #plan-btn, #or, #bar {
+	margin-right: 10px;
+}
+
+.price-tag {
+    display: flex;
+}
+
+.price-tag h5 {
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.vertical-divider {
+	border-left: 2px;
+	height: 100vh;
+}
+
+#bootstrap-override .card, .card-body, .card-img-top{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#bootstrap-override .card-body img {
+    width: 10%;
+}
+
+#bootstrap-override .card-body #custom-btn {
+    margin-left: 90px;
+}
+
+.form-inline .form-group {
+  margin-right:4px;
+}
+
+.clearfix {
+	clear: both;
+}

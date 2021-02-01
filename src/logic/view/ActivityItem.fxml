@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="form" prefHeight="150.0" prefWidth="600.0" style="-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 5, 2);" stylesheets="@css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.ActivityItemGraphic">
+   <children>
+      <VBox prefWidth="600.0">
+         <children>
+            <Label fx:id="lblActivityName" contentDisplay="CENTER" prefHeight="44.0" prefWidth="602.0" text="Activity Name">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblActivityTime" prefHeight="33.0" prefWidth="609.0" text="18:00-20:00">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblDescription" alignment="TOP_LEFT" prefHeight="89.0" prefWidth="605.0" text="Description">
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

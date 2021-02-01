@@ -1,0 +1,258 @@
+@charset "UTF-8";
+
+@font-face{
+    font-family: Baloo Da;
+    src: url("fonts/Baloo-Da/BalooDa2-Medium.ttf");
+}
+
+@font-face{
+    font-family: BarlowMed;
+    src: url(../Html/fonts/Barlow/Barlow-Medium.ttf);
+}
+
+.btn-colors{
+    color: #fff;
+    background-color: #bc986a;
+    border-color: #bc986a ;
+
+}
+
+.btn-colors:focus, .btn-colors.focus{
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.sb-wrapper {
+    display: flex;   
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#sidebar {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100vh;
+    background-color: #fbeec1;
+    padding: 8px;
+}
+
+#logo {
+    font-family: Baloo Da;
+    font-size: 50px;
+}
+
+.plantrip-content{
+	width: 500px;
+    max-width: 500px;
+    padding: 20px;
+    display: table;
+	word-wrap: break-word;
+	overflow: scroll;
+}
+
+.plantrip-content .day {
+	display:inline-block;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.plantrip-content .map{
+    min-width: 100px;
+    max-width: 100px;
+  
+}
+
+#bootstrap-override .nav-bar {
+    padding: 5px;
+    padding-top: 10px;
+    background-color: white;
+}
+
+#save-btn{
+    margin: 20px;
+}
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
+
+.map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
+
+.day{
+	
+    display: table;
+	width: 100%;
+	overflow: scroll;
+	
+	
+}
+
+.day #trip-title{
+	margin-bottom: 30px;	
+}
+
+
+
+.activity-form{
+	margin-top: 20px;
+	min-width: 100%;
+	padding: 20px;
+    border-radius: 5px;
+	box-shadow: 2px 2px 5px #979ca5;		
+	margin-top: 3%;
+    display:inline-block;
+    background: white;
+}
+
+.activity-plan{
+	resize: none;
+    width: 600px;
+    height: 200px;
+}
+
+.flex-form-row{
+	display: inline-block;
+}
+
+.location-form {
+	margin-top: 30px;
+	background: white;
+	padding:20px;
+	border-radius:10px;
+}
+
+
+
+/* SELECT PREFERENCES PAGE */
+
+html, body{
+    margin: 0;
+    height:100%;
+}
+
+#selectPreferences-body{
+    background-image: url(../res/images/SeamlessMapPattern.png);
+   /* background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;*/
+    min-width: 100%;
+    min-height: 100%;
+    
+}
+
+#preferences-bg{  
+    padding-top: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 40px;
+}
+
+#preferences-form{
+    background-color: white;
+    width: 100% ;
+    height: 100%;
+    padding: 59px;
+    border-radius: 20px;
+}
+
+.form-categories{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#form-btns{
+    margin-top: 30px;
+}
+
+
+ #tripDescription-ta{
+	resize: none;
+	width: 100%;
+	height: 150px;
+}
+
+/* DIVIDER */
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+}
+.separator::before {
+    margin-right: .25em;
+}
+.separator::after {
+    margin-left: .25em;
+}
+
+/* SUGGESTION LIST */
+
+.place-suggestions{
+	width: 35%;
+	padding: 10px;
+	height: 700px;
+}
+
+.suggestion-card {
+    width: 100%;
+    margin: 0 auto;
+    height: fit-content;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.ic-container{
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    float:left;
+}
+
+.suggestion-icon{
+    margin:0 auto;
+    margin-top:50%
+}
+
+.suggestion-info{
+    display: flex ;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+}
+
+.suggestion-btn {
+	float:left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

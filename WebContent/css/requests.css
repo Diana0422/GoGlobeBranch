@@ -1,0 +1,31 @@
+.container {
+    margin-top: 5%;
+    background-color: white;
+    padding-bottom: 5%;
+}
+
+.tab-content .request {
+    display: flex;
+    background-color: #e3d8f1;
+    padding: 2%;
+
+}
+
+.request-info .name{
+    display: flex;
+}
+
+.request-info h5 {
+    margin-right: 1%;
+}
+
+.request-info {
+    width: 60%;
+}
+
+.btn {
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    padding: 10px;
+}

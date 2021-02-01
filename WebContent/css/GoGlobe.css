@@ -1,0 +1,94 @@
+@font-face{
+    font-family: Baloo Da;
+    src: url("fonts/Baloo-Da/BalooDa2-Medium.ttf");
+}
+
+@font-face{
+    font-family: BarlowMed;
+    src: url(../Html/fonts/Barlow/Barlow-Medium.ttf);
+}
+
+body{
+    font-family: BarlowMed;
+}
+
+#body .nav-link {
+    color: white;
+}
+
+#body .nav-item{
+    display: flex;
+    align-items: center;
+  
+}
+
+.btn-colors{
+    color: #fff;
+    background-color: #bc986a;
+    border-color: #bc986a ;
+
+}
+
+.btn-colors:focus, .btn-colors.focus{
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+#navbar {
+    padding: 0 0 0 0;
+}
+
+.navbar-bg{
+    background: coral;
+}
+
+.sb-header{
+    padding-left: 20px;
+}
+
+.sb-wrapper {
+    display: flex;
+    
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sb-wrapper ul{
+    list-style-type: none;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.sb-wrapper ul li{
+    margin-bottom: 15px;
+}
+
+#sidebar {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 100vh;
+    background-color: #fbeec1;
+}
+
+#logo {
+    font-family: Baloo Da;
+    font-size: 50px;
+}
+
+.activity{
+    box-shadow: #bc986a;
+}
+
+.plantrip-content{
+    display: inline-flex;
+}
+
+.plantrip-content .day {
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.plantrip-content .map{
+    min-width: 100px;
+    max-width: 100px;
+}

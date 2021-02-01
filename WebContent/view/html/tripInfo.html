@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+   	<div class="tab-pane active" role="tabpanel" id="general">
+    		<div class="main-content">
+				<div class="all-info">
+					<div class="general-info">
+		            	<div class="infos-left">
+			            	<!-- Trip Organizer -->
+			            	<form action="tripInfo.jsp" method="POST">
+			            		<div class="organizer user-tag">
+			            			<h3>Organizer:</h3>
+			            			<h4 style="margin-right: 10px;margin-bottom: 0px;margin-top: 5px;">${orgName}</h4>
+			            			<h4 style="margin-right: 10px;margin-bottom: 0px;margin-top: 5px;">${orgSurname}</h4>
+			            			<button type="submit" class="btn btn-primary" name="viewprofile">profile</button>
+			            		</div>
+			            	</form>
+			
+			            	<h3>Categories:</h3>
+			            	<ul class="category-list">
+			                	<li class="category1">
+			                    	<img src="../res/images/icons8-cocktail-50.png" alt="cat1Icon">
+			                    	<h4>${tripCat1}</h4>
+			                	</li>
+			                	<li class="category2">
+			                    	<img src="../res/images/icons8-greek-pillar-capital-50.png" alt="cat2Icon">
+			                    	<h4>${tripCat2}</h4>
+			                	</li>
+			            	</ul>
+			            	
+			            	<div class="price-tag" style="margin-top:20%; margin-bottom: 20%;">
+			                	<h3>Starting price:</h3>
+			                	<h4 style="margin-top: 5px; margin-left:10px;">${tripPrice}&euro;</h4>
+			            	</div>
+			            			
+			            	<h3>Description:</h3>
+			            	<div class="trip-description">
+			                	<p>${tripDesc}</p>
+			            	</div>
+		            	</div>
+		        	</div>
+		        			
+					<div class="flight-description">
+						<h3>Dates:</h3>
+			            <div class="dates bordered">
+				            <ul>
+				            	<li class="departure bordered-bottom">
+				            		<img src="../res/images/takeoff-icon.png" alt="takeOffIcon">
+				                    <h4 class="center italicbold">Departure:</h4>
+				                    <h4 class="center">${depDate}</h4>
+				            	</li>
+				            	<li class="return">
+				            		<img src="../res/images/landing-icon.png" alt="landIcon">               			
+				                    <h4 class="center italicbold">Return:</h4>
+				                    <h4 class="center">${retDate}</h4>
+				            	</li>
+				            </ul>
+				       </div>
+			        			
+			        	<h3>Available Flight:</h3>
+			        	<div class="flight bordered">
+			        		<ul>
+			        			<li class="origin bordered-bottom">
+			        				<img src="../res/images/origin-icon.png" alt="originIcon">
+			        				<h4 class="center italicbold">Departure from:</h4>
+			        				<h4 class="center">${flightOri}</h4>
+			        				<br>
+			        			</li>
+			        			<li class="destination bordered-bottom">
+			        				<img src="../res/images/origin-icon.png" alt="arrivalIcon">
+			        				<h4 class="center italicbold">Arrival to:</h4>
+			        				<h4 class="center">${flightArr}</h4>
+			        				<br>
+			        			</li>
+			        			<li class="carrier bordered-bottom">
+			        				<img src="../res/images/carrier-icon.png" alt="carrierIcon">
+			        				<h4 class="center italicbold">Carrier:</h4>
+			        				<h4 class="center">${carrier}</h4>
+			        				<br>
+			        			</li>
+			        			<li class="ticket-price">
+			        				<img src="../res/images/pricetag-icon.png" alt="priceIcon">
+			        				<h4 class="center italicbold">Ticket price:</h4>
+			   						<h4 class="center">${ticket}&euro;</h4>
+			        				<br>
+			        			</li>
+			        		</ul>
+			        	</div>
+					</div>
+				</div>
+	        			
+    		</div>
+    	</div>
+</body>
+</html>

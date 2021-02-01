@@ -1,0 +1,15 @@
+.alertbody {
+    display: flex;
+}
+
+#alert-message {
+    font-family: BarlowBold;
+}
+
+#error-info {
+    margin-bottom: 10%;
+}
+
+.alertcontent {
+    margin-right: 20%;
+}

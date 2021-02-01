@@ -1,0 +1,64 @@
+@font-face{
+    font-family: BalooDa;
+    src: url(../res/fonts/Baloo-Da/BalooDa2-Bold.ttf);
+}
+
+@font-face{
+    font-family: BarlowMed;
+    src: url(../res/fonts/Barlow/Barlow-Medium.ttf);
+}
+
+html, body{
+    min-height: 100%;
+}
+
+
+#login-body{
+    height: 100vh;
+    font-family: BarlowMed;
+}
+
+.login-wrapper{
+    background-image: url(../res/images/MtFuji.jpg); 
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.login-box{
+    padding: 40px;
+    background-color: white;
+    justify-content: space-around;
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 400px;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+}
+
+.signin-btn-div{
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+}
+.credentials{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+.credentials-label{
+    margin-top: 15px;
+}
+
+#login-usrname, #login-psw{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 3px;
+}

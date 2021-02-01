@@ -1,0 +1,163 @@
+body {
+    font-family: BarlowMed;
+    background-image: linear-gradient(to top, rgba(245, 249, 252, 0), rgba(8, 27, 61, 0.73)),url(../res/images/japan-kyoto-toji-pagoda.jpg);
+    background-size: cover;
+    height: fit-content;
+}
+
+.trip-info {
+    justify-content: space-between;
+}
+
+.all-info {
+	display: flex;
+}
+
+.main-content {
+	margin-top: 2%;
+}
+
+.flight-description {
+	width:100%;
+}
+
+/* left elements in displayer */
+.general-info {
+	display: flex;
+    margin-right: 10%;
+}
+
+.infos-right {
+	width: 100%;
+}
+
+.trip-title {
+    margin-bottom: 5%;
+    display:flex;
+}
+
+.trip-title form {
+	margin-left: 5%;
+}
+
+.price-tag {
+    display: flex;
+    margin-bottom: 50%;
+}
+
+h4 {
+    margin-right: 2%;
+}
+
+h5 {
+    display: flex;
+    align-items: center;
+}
+
+h6 {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.trip-description {
+    margin-bottom: 10%;
+}
+
+/* right elements in displayer */
+
+.trip-img {
+    margin-bottom: 10%;
+    margin-right: 10%;
+    max-width: inherit;
+    min-width: inherit;
+}
+
+ul {
+    padding-left: 0%;
+    list-style: none;
+}
+
+li {
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.category-list h5 {
+    display: flex;
+    align-items: center;
+}
+
+.dates {
+    margin-bottom: 5%;
+}
+
+.departure {
+    display: flex;
+    margin-bottom: 10px;
+    width: auto;
+}
+
+.departure img, .return img {
+	padding-bottom: 5px;
+}
+
+.departure h4, .return h4 {
+    margin-right: 2%;
+}
+
+.return {
+    display: flex;
+}
+
+.return h5 {
+    margin-right: 2%;
+}
+
+/* activities */
+.day-location {
+	display: flex;
+	margin-top: 2%;
+}
+
+#loc {
+	margin-left: 2%;
+}
+
+#panel-title {
+	margin-top: 3%;
+}
+
+#activity-title {
+	color: black;
+}
+
+.activity {
+	width: 100%;
+	display: flex;
+}
+
+.activity-price {
+	margin:auto;
+}
+
+.activity-price h4 {
+	width: max-content;
+}
+
+/* Participants */
+.participants {
+	display: flex;
+}
+
+/* Organizer */
+.organizer {
+	margin-top: 10%;
+}
+
+/* FONT */
+
+h3 {
+	font-family: BarlowBold;
+}

@@ -1,0 +1,46 @@
+
+
+.root {
+	background-image: url("/logic/view/images/MtFuji.jpg");
+	-fx-background-image: url("/logic/view/images/MtFuji.jpg");
+	background-position: center;
+	-fx-background-position: center;
+    background-size: cover;
+    -fx-background-size: cover;
+	-fx-font-family: "Barlow Medium";
+}
+
+#signin_btn{
+	-fx-background-color: blue;
+	background-color: blue;
+}
+
+#signup_btn{
+	-fx-background-color: none;
+	background-color: none;
+	-fx-text-fill:  #007bff;
+}
+
+#signup_btn:hover{
+	-fx-underline: true;
+	-fx-cursor: hand;
+	cursor: hand;
+}
+
+
+
+#login-box{
+	background-color: #fff;
+	-fx-background-color: #fff;
+	-fx-background-radius: 20px;
+}
+
+
+.login-box {
+	background-color: #fff;
+	-fx-background-color: #fff;
+	-fx-border-radius: 20px;
+	border-radius: 20px;
+
+}
+

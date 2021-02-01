@@ -1,0 +1,80 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+@font-face {
+    src: url(fonts/Baloo-Da/BalooDa2-ExtraBold.ttf);
+}
+
+@font-face {
+    src: url(fonts/Barlow/Barlow-Bold.ttf);
+}
+
+@font-face {
+    src: url(fonts/Barlow/Barlow-Medium.ttf);
+}
+
+.root {
+	-fx-background-image: url("/logic/view/images/hot-spring.jpg");
+}
+
+#navbar {
+	-fx-background-color: #f8f9fa; 
+}
+
+#logo {
+	-fx-font-family: "Baloo Da 2 ExtraBold"; 
+}
+
+#form {
+	-fx-background-color: #ffffff;
+	background-color: #fff;
+	-fx-background-radius: 20px;
+}
+
+#btn {
+	-fx-background-color: #007bff;
+	-fx-text-fill: white;
+}
+
+#btn:hover {
+	-fx-background-color:rgb(6, 169, 255);
+	background-color:rgb(6, 169, 255);
+	-fx-cursor: hand;
+	cursor: hand;
+}
+
+/* Tab Pane */
+
+#tab-container {
+	-fx-background-color: #ffffff;
+}
+
+#tab-pane {
+	-fx-background-color: #ffffff;
+}
+
+#tab {
+	-fx-background-color: #ffffff;
+	-fx-text-color: #007bff;
+}
+
+/* Anchor Pane */
+#anchor {
+	-fx-background-color: #ffffff;
+}
+
+/* Bold text for info */
+#info {
+	-fx-text-fill: #fff;
+}
+
+/* Tab pane */
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+
+
