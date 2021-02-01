@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import logic.bean.SessionBean;
 import logic.bean.TripBean;
 import logic.model.exceptions.LoadGraphicException;
 import logic.util.Session;
@@ -62,7 +61,6 @@ public class CardGraphic implements Initializable {
     
     private TripBean tripBean;
     private GridPane container;
-    private SessionBean sessionBean;
     private Session session;
 
     
@@ -86,8 +84,8 @@ public class CardGraphic implements Initializable {
 	@FXML
     void loadTripInfo(MouseEvent event) {
 		Stage stage = (Stage) container.getScene().getWindow();
-		if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.INFO, new TripInfoGraphic(getTripBean(), sessionBean)));
-		stage.setScene(GraphicLoader.switchView(GUIType.INFO, new TripInfoGraphic(getTripBean(), sessionBean), session));
+		if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.INFO, new TripInfoGraphic(getTripBean())));
+		stage.setScene(GraphicLoader.switchView(GUIType.INFO, new TripInfoGraphic(getTripBean()), session));
     }
     
 

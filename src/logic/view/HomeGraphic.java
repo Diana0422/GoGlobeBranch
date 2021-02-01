@@ -35,7 +35,7 @@ public class HomeGraphic implements GraphicControl {
 	@FXML
 	void forwardGainPoints(MouseEvent event) {
 		Stage stage = (Stage) lblWelcome.getScene().getWindow();
-		stage.setScene(GraphicLoader.switchView(GUIType.GAIN, null, session));
+		stage.setScene(GraphicLoader.switchView(GUIType.GAIN, new GainPointsGraphic(), session));
 	}
 	
 	@FXML

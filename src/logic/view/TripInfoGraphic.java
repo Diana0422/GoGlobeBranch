@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.bean.ActivityBean;
 import logic.bean.DayBean;
-import logic.bean.SessionBean;
 import logic.bean.TripBean;
 import logic.bean.UserBean;
 import logic.control.FlightController;
@@ -95,7 +94,7 @@ public class TripInfoGraphic implements GraphicControl {
 	private Session session;
     public static final String WIDGET_ERROR = "Widget loading error.";
 
-    public TripInfoGraphic(TripBean tripBean, SessionBean sessionBean) {
+    public TripInfoGraphic(TripBean tripBean) {
 		this.tripBean = tripBean;
 	}
 
@@ -103,7 +102,7 @@ public class TripInfoGraphic implements GraphicControl {
     void back(MouseEvent event) {
     	Stage stage = (Stage) btnBack.getScene().getWindow();
     	if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic()));
-    	stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(), session));
+    	if (session != null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(), session));
     }
 	
 	public void setCategory1Image(Image cat1Img) {
@@ -209,7 +208,7 @@ public class TripInfoGraphic implements GraphicControl {
 		UserBean organizer = trip.getOrganizer();
 		UserItemGraphic graphic = new UserItemGraphic();
 		try {
-			AnchorPane anchor = (AnchorPane) graphic.initializeNode(organizer, trip);
+			AnchorPane anchor = (AnchorPane) graphic.initializeNode(organizer, trip, this.session);
 			boxOrganizer.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic alert = new AlertGraphic();
@@ -221,16 +220,16 @@ public class TripInfoGraphic implements GraphicControl {
 		List<UserBean> participants = bean.getParticipants();
 		if (participants != null) {
 			for (UserBean user: participants) {
-				displayParticipant(user, bean);
+				displayParticipant(user);
 			}
 		}
 	}
 
-	private void displayParticipant(UserBean user, TripBean trip) {
+	private void displayParticipant(UserBean user) {
 		UserItemGraphic graphic = new UserItemGraphic();
 		AnchorPane anchor;
 		try {
-			anchor = (AnchorPane) graphic.initializeNode(user, trip);
+			anchor = (AnchorPane) graphic.initializeNode(user, this.tripBean, this.session);
 			boxTravelers.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic alert = new AlertGraphic();
@@ -241,16 +240,16 @@ public class TripInfoGraphic implements GraphicControl {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.controller = new JoinTripController();
-		initializeParticipants(tripBean);
-		displayOrganizer(tripBean);
-		lblTitle.setText(tripBean.getTitle());
-		lblPrice.setText(tripBean.getPrice()+"€");
-		lblDescription.setText(tripBean.getDescription());
-		lblDeparture.setText(tripBean.getDepartureDate());
-		lblReturn.setText(tripBean.getReturnDate());
-		lblCategory1.setText(tripBean.getCategory1());
-		lblCategory2.setText(tripBean.getCategory2());
-		addDayTabs(tripBean.getDays());
+		initializeParticipants(this.tripBean);
+		displayOrganizer(this.tripBean);
+		lblTitle.setText(this.tripBean.getTitle());
+		lblPrice.setText(this.tripBean.getPrice()+"€");
+		lblDescription.setText(this.tripBean.getDescription());
+		lblDeparture.setText(this.tripBean.getDepartureDate());
+		lblReturn.setText(this.tripBean.getReturnDate());
+		lblCategory1.setText(this.tripBean.getCategory1());
+		lblCategory2.setText(this.tripBean.getCategory2());
+		addDayTabs(this.tripBean.getDays());
 		displayFlightInfo();
 	}
 

@@ -118,7 +118,6 @@ public class PlanTripGraphic implements GraphicControl {
  
     	try {
 			if (newActivity.validateActivity()) {
-				//planTripBean.addActivity(newActivity);  ULTIMO CAMBIAMENTO
 				PlanTripController.getInstance().addActivity(this.planTripBean, newActivity);
 				loadActivity(newActivity);
 				lblErrorMsg.setText("");

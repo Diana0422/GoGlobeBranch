@@ -9,7 +9,6 @@ import logic.persistence.exceptions.DBConnectionException;
 import logic.persistence.exceptions.DatabaseException;
 import logic.util.Cookie;
 import logic.util.Session;
-import logic.view.GUIType;
 import logic.model.User;
 
 public class RegistrationController {
@@ -33,7 +32,9 @@ public class RegistrationController {
 		try {
 			if (UserDaoDB.getInstance().save(user)) {
 				Session session = new Session();
-				session.setCurrView(GUIType.REGISTER);
+				session = new Session();
+				session.setUserName(user.getName());
+				session.setUserSurname(user.getSurname());
 				session.setUserEmail(email);
 				Cookie.getInstance().addSession(session);
 				SessionBean bean = new SessionBean(); 

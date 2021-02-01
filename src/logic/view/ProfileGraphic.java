@@ -22,7 +22,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.bean.ReviewBean;
-import logic.bean.SessionBean;
 import logic.bean.TripBean;
 import logic.bean.UserBean;
 import logic.control.FormatManager;
@@ -75,7 +74,7 @@ public class ProfileGraphic implements GraphicControl {
     private Text txtNameSurname;
 
     @FXML
-    private Text txtAge;
+    private Label txtAge;
 
     @FXML
     private ImageView ivAdventureAttitude;
@@ -123,20 +122,31 @@ public class ProfileGraphic implements GraphicControl {
     private Label lblUserBio;
     
     private UserBean target;
+    private TripBean trip;
     private Number vote;
     private Session session;
     private static final String WIDGET_ERROR = "Widget loading error.";
+    
+    public ProfileGraphic(UserBean bean) {
+    	this.target = bean;
+    }
+    
+    public ProfileGraphic(UserBean bean, TripBean trip) {
+    	this.target = bean;
+    	this.trip = trip;
+    }
 
     @FXML
     void back(MouseEvent event) {
     	Stage stage = (Stage) lblUserBio.getScene().getWindow();
-    	stage.setScene(GraphicLoader.switchView(session.getPrevView(), null, session));
+    	if (session != null) stage.setScene(GraphicLoader.switchView(session.getPrevView(), session.getPrevGraphicControl(), session));
+    	if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.INFO, new TripInfoGraphic(this.trip)));
     }	
     
     @FXML
     void saveBio(MouseEvent event) {
     	try {
-			ProfileController.getInstance().updateUserBio(DesktopSessionContext.getInstance().getSession().getSessionEmail(), taBio.getText());
+			ProfileController.getInstance().updateUserBio(session.getUserEmail(), taBio.getText());
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
 			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
@@ -155,15 +165,15 @@ public class ProfileGraphic implements GraphicControl {
     	bean.setDate(date);
     	bean.setComment(txtComment.getText());
     	
-    	if (DesktopSessionContext.getInstance().getSession() != null) {
-        	bean.setReviewerName(DesktopSessionContext.getInstance().getSession().getSessionName());
-        	bean.setReviewerSurname(DesktopSessionContext.getInstance().getSession().getSessionSurname());
+    	if (session != null) {
+        	bean.setReviewerName(session.getUserName());
+        	bean.setReviewerSurname(session.getUserSurname());
         	
         	try {
             	if (rdTraveler.isSelected()) {
-        			ReviewUserController.getInstance().postReview("TRAVELER", d, txtComment.getText(), txtTitle.getText(), DesktopSessionContext.getInstance().getSession().getSessionEmail(), target.getEmail(), target);
+        			ReviewUserController.getInstance().postReview("TRAVELER", d, txtComment.getText(), txtTitle.getText(), session.getUserEmail(), target.getEmail(), target);
             	} else {
-        			ReviewUserController.getInstance().postReview("ORGANIZER", d, txtComment.getText(), txtTitle.getText(), DesktopSessionContext.getInstance().getSession().getSessionEmail(), target.getEmail(), target);
+        			ReviewUserController.getInstance().postReview("ORGANIZER", d, txtComment.getText(), txtTitle.getText(), session.getUserEmail(), target.getEmail(), target);
             	}
         	} catch (DatabaseException e) {
     			AlertGraphic alert = new AlertGraphic();
@@ -178,7 +188,7 @@ public class ProfileGraphic implements GraphicControl {
     			vbReviews.getChildren().add(anchor);
     		} catch (LoadGraphicException e) {
     			AlertGraphic alert = new AlertGraphic();
-    			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred displaying review.");
+    			alert.display(GUIType.PROFILE, GUIType.HOME, null, session, WIDGET_ERROR, "Something unexpected occurred displaying review.");
     		}
     	} else {
     		lblError.setText("You need to log in first");
@@ -225,7 +235,12 @@ public class ProfileGraphic implements GraphicControl {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resource) {
-		this.target = (UserBean) recBundle;
+		try {
+			this.target = ProfileController.getInstance().getProfileUser(target.getEmail());
+		} catch (DatabaseException e1) {
+			AlertGraphic alert = new AlertGraphic();
+			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred getting user.");
+		}
 		target.setGraphic(this); // Set the reference to this controller in the user bean to receive updates
 
 		List<TripBean> myTripBeans = null;

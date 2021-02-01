@@ -20,12 +20,14 @@ public class GraphicLoader {
 
 	public static Scene switchView(GUIType nextView, GraphicControl graphic, Session session) {
 		session.setCurrView(nextView, graphic);
+		System.out.println("WITH session.");
 		try {
 			if (nextView.equals(GUIType.MAIN)) {
 				return new Scene(loadFXML(nextView).load());
 			} else {
 				FXMLLoader loader = loadFXML(nextView);
 				if (graphic != null) {
+					System.out.println("graphic is not null");
 					graphic.setSession(session);
 					loader.setController(graphic);
 				}
@@ -42,7 +44,7 @@ public class GraphicLoader {
 	}
 	
 	public static Scene switchView(GUIType nextView, GraphicControl graphic) {
-
+		System.out.println("NO session.");
 		try {
 			if (nextView.equals(GUIType.MAIN)) {
 				return new Scene(loadFXML(nextView).load());

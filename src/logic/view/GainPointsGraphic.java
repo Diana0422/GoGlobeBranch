@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import logic.bean.SessionBean;
 import logic.bean.TripBean;
 import logic.control.GainPointsController;
 import logic.model.exceptions.LoadGraphicException;
@@ -34,25 +33,21 @@ public class GainPointsGraphic implements GraphicControl {
     
     private TripBean trip;
     private Session session;
-    private SessionBean sessionBean;
 
     @FXML
     private Button btnBack;
-    
-    public GainPointsGraphic(SessionBean bean) {
-    	this.sessionBean = bean;
-    }
+   
 
     @FXML
     void back(MouseEvent event) {
     	Stage stage = (Stage) btnBack.getScene().getWindow();
-    	stage.setScene(GraphicLoader.switchView(GUIType.HOME, new HomeGraphic(sessionBean), session));
+    	stage.setScene(GraphicLoader.switchView(GUIType.HOME, new HomeGraphic(), session));
     }
 
 	@FXML
 	void onGainPoints(MouseEvent event) {
 		try {
-			if (GainPointsController.getInstance().verifyParticipation(DesktopSessionContext.getInstance().getSession(), getTrip())) {
+			if (GainPointsController.getInstance().verifyParticipation(session.getUserEmail(), getTrip())) {
 				AlertGraphic graphic = new AlertGraphic();
 				graphic.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(),  "Trip validated successfully.", "You gained 100 points");
 			
@@ -80,7 +75,7 @@ public class GainPointsGraphic implements GraphicControl {
 	
 	public void loadTrip() {
 		try {
-			setTrip(GainPointsController.getInstance().getTripOfTheDay(DesktopSessionContext.getInstance().getSession().getSessionEmail()));
+			setTrip(GainPointsController.getInstance().getTripOfTheDay(session.getUserEmail()));
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
 			alert.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
@@ -89,10 +84,10 @@ public class GainPointsGraphic implements GraphicControl {
 			int column = 0;
 			int row = 1;
 		
-			CardGraphic cc = new CardGraphic(cardsLayout, session, sessionBean);
+			CardGraphic cc = new CardGraphic();
 			AnchorPane anchor;
 			try {
-				anchor = (AnchorPane) cc.initializeNode(trip);
+				anchor = (AnchorPane) cc.initializeNode(trip, cardsLayout, session);
 				cardsLayout.add(anchor, column, row);
 				GridPane.setMargin(anchor, new Insets(20));
 			} catch (LoadGraphicException e) {
@@ -116,7 +111,7 @@ public class GainPointsGraphic implements GraphicControl {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadTrip();
-		lblPoints.setText("You have "+sessionBean.getSessionPoints()+" points.");
+		lblPoints.setText("You have "+session.getUserPoints()+" points.");
 	}
 
 	@Override

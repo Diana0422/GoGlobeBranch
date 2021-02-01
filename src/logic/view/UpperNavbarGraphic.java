@@ -90,10 +90,10 @@ public class UpperNavbarGraphic implements GraphicControl {
     @FXML
     void displayProfile(MouseEvent event) {
     	try {
-			DesktopSessionContext.getGuiLoader().loadGUI(null, ProfileController.getInstance().getProfileUser(DesktopSessionContext.getInstance().getSession().getSessionEmail()), GUIType.PROFILE);
+			changeScene(GUIType.PROFILE, new ProfileGraphic(ProfileController.getInstance().getProfileUser(session.getUserEmail())), session);
 		} catch (DatabaseException e) {
-			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.MAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     }
 
