@@ -12,11 +12,16 @@ import logic.persistence.exceptions.DBConnectionException;
 import logic.persistence.exceptions.DatabaseException;
 import logic.util.Cookie;
 import logic.util.Session;
+import logic.model.Day;
 import logic.model.Request;
 import logic.model.Trip;
 import logic.model.TripCategory;
 import logic.model.User;
+import logic.model.adapters.CityAdapter;
+import logic.model.apis.SkyscannerAPI;
+import logic.model.exceptions.APIException;
 import logic.model.exceptions.UnloggedException;
+import logic.model.interfaces.CityGeolocation;
 import logic.model.utils.converters.BeanConverter;
 import logic.model.utils.converters.TripBeanConverter;
  
@@ -28,7 +33,7 @@ public class JoinTripController {
 		this.converter = new TripBeanConverter();
 	}
 
-	public List<TripBean> searchTrips(String value) throws DatabaseException {
+	public List<TripBean> searchTrips(String value) throws DatabaseException, APIException {
 		String logStr = "Search trips by value started.\n";
 		Logger.getGlobal().info(logStr);
 		List<Trip> filteredTrips = new ArrayList<>();
@@ -37,7 +42,9 @@ public class JoinTripController {
 			if (value == null) return converter.convertToListBean(trips);
 			for (Trip trip: trips) {
 				if (trip.getTitle().toLowerCase().contains(value.toLowerCase()) && trip.getAvailableSpots() != 0) filteredTrips.add(trip);
-				
+				for (Day day: trip.getDays()) {
+					if (checkCountry(day.getLocation().getCity(), value)) filteredTrips.add(trip);
+				}
 			}
 			/* Convert List<Trip> into List<TripBean> */
 			return converter.convertToListBean(filteredTrips);			
@@ -45,6 +52,12 @@ public class JoinTripController {
 			throw new DatabaseException(e.getMessage(), e.getCause());
 		}
 
+	}
+	
+	private boolean checkCountry(String cityName, String inputCountry) throws APIException {
+		CityGeolocation service = new CityAdapter(new SkyscannerAPI());
+		String countryName = service.getCountryName(cityName);
+		return countryName.equalsIgnoreCase(inputCountry);
 	}
 	
 	public List<TripBean> getSuggestedTrips(String userEmail) throws DatabaseException {

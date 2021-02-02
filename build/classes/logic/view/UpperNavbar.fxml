@@ -30,7 +30,7 @@
                      <graphic>
                         <Label fx:id="lblLogo" alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="155.0" text="GoGlobe">
                            <font>
-                              <Font name="System Bold" size="30.0" />
+                              <Font name="Arial Black" size="30.0" />
                            </font>
                         </Label>
                      </graphic>

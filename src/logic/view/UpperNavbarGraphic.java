@@ -74,7 +74,7 @@ public class UpperNavbarGraphic implements GraphicControl {
 
     @FXML
     void displayJoinTrip(MouseEvent event) {
-    	changeScene(GUIType.JOIN, new JoinTripGraphic(), session);
+    	changeScene(GUIType.JOIN, new JoinTripGraphic(null), session);
     }
 
     @FXML

@@ -1,0 +1,33 @@
+.logo {
+    display: flex;
+    margin-top: 3%;
+    width: 30%;
+}
+
+#goglobe-logo {
+    width: 100px;
+    height: 100px;
+}
+
+#title {
+    font-family: Baloo Da;
+    color: white;
+    font-size: 68px;
+}
+
+#choice-btn {
+    display: flex;
+}
+
+.join-community h3 {
+    font-size: 36px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    color: white; 
+}
+
+.combobox-location {
+    margin-top: 10%;
+    width: 50%;
+}

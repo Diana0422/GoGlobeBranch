@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import logic.bean.TripBean;
 import logic.control.JoinTripController;
+import logic.model.exceptions.APIException;
 import logic.persistence.exceptions.DatabaseException;
 import logic.util.Session;
 import logic.view.filterstrategies.TripFilterManager;
@@ -42,6 +43,11 @@ public class JoinTripGraphic implements GraphicControl {
 	TripFilterManager filterManager;
 	JoinTripController controller;
 	private Session session;
+	private String searchVal;
+	
+	public JoinTripGraphic(String searchval) {
+		this.searchVal = searchval;
+	}
 
     @FXML
     void back(MouseEvent event) {
@@ -57,13 +63,22 @@ public class JoinTripGraphic implements GraphicControl {
 			if (session != null) {
 				this.tripBeans = controller.getSuggestedTrips(session.getUserEmail());
 			} else {
-				this.tripBeans = controller.searchTrips(txtSearch.getText());
+				System.out.println(this.searchVal);
+				if (searchVal != null) {
+					System.out.println(this.searchVal);
+					this.tripBeans = controller.searchTrips(this.searchVal);
+				} else {
+					this.tripBeans = controller.searchTrips(txtSearch.getText());	
+				}
 			}
 			CardGraphic cc = new CardGraphic();
 			cc.loadCardGrid(cardsLayout, this.tripBeans, session);
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
 			alert.display(GUIType.JOIN, GUIType.HOME, null, session.getUserEmail(), e.getMessage(), e.getCause().toString());
+		} catch (APIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -74,6 +89,9 @@ public class JoinTripGraphic implements GraphicControl {
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
 			alert.display(GUIType.JOIN, GUIType.HOME, null, session.getUserEmail(), e.getMessage(), e.getCause().toString());
+		} catch (APIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		CardGraphic cc = new CardGraphic();
 		cc.loadCardGrid(cardsLayout, this.tripBeans, session);

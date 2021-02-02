@@ -116,7 +116,7 @@ img.resize {
 /* Centering items */
 .center {
     margin: auto;
-    width: 50%;
+    /*width: 50%;*/
     padding: 10px;
   }
   
@@ -227,4 +227,12 @@ label.star:before {
 	background: white;
 	border-radius: 10px;
 	padding: 2%;
+}
+
+.flex {
+    display: flex;
+}
+
+.separate {
+    margin: 2%;
 }

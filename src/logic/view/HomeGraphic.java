@@ -41,7 +41,7 @@ public class HomeGraphic implements GraphicControl {
 	@FXML
 	void forwardJoinTrip(MouseEvent event) {
 		Stage stage = (Stage) lblWelcome.getScene().getWindow();
-		stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(), session));
+		stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(null), session));
 	}
 
 	@FXML

@@ -101,8 +101,8 @@ public class TripInfoGraphic implements GraphicControl {
 	@FXML
     void back(MouseEvent event) {
     	Stage stage = (Stage) btnBack.getScene().getWindow();
-    	if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic()));
-    	if (session != null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(), session));
+    	if (session == null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(null)));
+    	if (session != null) stage.setScene(GraphicLoader.switchView(GUIType.JOIN, new JoinTripGraphic(null), session));
     }
 	
 	public void setCategory1Image(Image cat1Img) {

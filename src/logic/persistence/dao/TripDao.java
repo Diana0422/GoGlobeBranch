@@ -190,6 +190,7 @@ public class TripDao {
 					t.setMinAge(ageMin);
 					t.setDescription(desc);
 					t.setShared(true);
+					t.setDays(DayDao.getInstance().getTripDays(title));
 					trips.add(t);
 				} while(rs.next());
 			}

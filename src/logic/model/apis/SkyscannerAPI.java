@@ -15,52 +15,10 @@ import logic.model.exceptions.FlightNotFoundException;
 
 public class SkyscannerAPI {
 	
-	private String originCityId;
-	private String destCityId;
-	private JSONObject flight;
 	private JSONArray carriers;
 	private JSONArray places;
+	private JSONObject placeInfo;
 	private static final String FLIGHT_OBJ = "OutboundLeg";
-
-	public String getOriginCityId() {
-		return originCityId;
-	}
-
-	public void setOriginCityId(String originCityId) {
-		this.originCityId = originCityId;
-	}
-
-	public String getDestCityId() {
-		return destCityId;
-	}
-
-	public void setDestCityId(String destCityId) {
-		this.destCityId = destCityId;
-	}
-
-	public JSONObject getFlight() {
-		return flight;
-	}
-
-	public void setFlight(JSONObject flight) {
-		this.flight = flight;
-	}
-	
-	public JSONArray getCarriers() {
-		return carriers;
-	}
-
-	public void setCarriers(JSONArray carriers) {
-		this.carriers = carriers;
-	}
-	
-	public JSONArray getPlaces() {
-		return places;
-	}
-
-	public void setPlaces(JSONArray places) {
-		this.places = places;
-	}
 
 	public String getCityId(String cityName, String locale, String country, String currency) throws APIException {
 		String query = cityName;
@@ -80,7 +38,8 @@ public class SkyscannerAPI {
 			response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 			
 			JSONObject json = new JSONObject(response.body());
-			return json.getJSONArray("Places").getJSONObject(0).getString("CityId");
+			this.placeInfo = json.getJSONArray("Places").getJSONObject(0);
+			return this.placeInfo.getString("CityId");
 			
 		} catch (IOException | JSONException  e) {
 			throw new APIException(e.getCause(), "Error parsing JSON.");
@@ -88,6 +47,11 @@ public class SkyscannerAPI {
 			Thread.currentThread().interrupt();
 			throw new APIException(e.getCause(), "The request to the API was interrupted.");
 		}
+	}
+	
+	public String getCountry(String cityName, String locale, String localeCountry, String currency) throws APIException {
+		getCityId(cityName,locale, localeCountry, currency);
+		return this.placeInfo.getString("CountryName");
 	}
 
 
@@ -110,13 +74,12 @@ public class SkyscannerAPI {
         			.build();
         	HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             JSONObject json = new JSONObject(response.body());
-            setCarriers(json.getJSONArray("Carriers"));
-            setPlaces(json.getJSONArray("Places"));
+            this.carriers = json.getJSONArray("Carriers");
+            this.places = json.getJSONArray("Places");
             JSONArray quotes = json.getJSONArray("Quotes");
             
             // FlightNotFoundException handling
             if (!quotes.isEmpty()) {
-            	setFlight(quotes.getJSONObject(0));
             	return quotes.getJSONObject(0);
             } else {
             	throw new FlightNotFoundException("No flight was found for the origin: "+originId+"and destination: "+destId);
@@ -136,8 +99,8 @@ public class SkyscannerAPI {
 		JSONObject details = flight.getJSONObject(FLIGHT_OBJ);
     	int originId = details.getInt("OriginId");
 		
-    	for (int i=0; i<getPlaces().length(); i++) {
-    		JSONObject place = getPlaces().getJSONObject(i);
+    	for (int i=0; i<this.places.length(); i++) {
+    		JSONObject place = this.places.getJSONObject(i);
     		if (place.getInt("PlaceId") == originId) return place.getString("Name");
     	}
 		return null;	
@@ -149,8 +112,8 @@ public class SkyscannerAPI {
 		JSONObject details = flight.getJSONObject(FLIGHT_OBJ);
 		int destId = details.getInt("DestinationId");
 		
-		for (int i=0; i<getPlaces().length(); i++) {
-			JSONObject place = getPlaces().getJSONObject(i);
+		for (int i=0; i<this.places.length(); i++) {
+			JSONObject place = this.places.getJSONObject(i);
 			if (place.getInt("PlaceId") == destId) return place.getString("Name");
 		}
 		
@@ -163,8 +126,8 @@ public class SkyscannerAPI {
 		JSONObject details = flight.getJSONObject(FLIGHT_OBJ);
 		int carrierId = details.getJSONArray("CarrierIds").getInt(0);
 		
-		for (int i=0; i<getCarriers().length(); i++) {
-			JSONObject carrier = getCarriers().getJSONObject(i);
+		for (int i=0; i<this.carriers.length(); i++) {
+			JSONObject carrier = this.carriers.getJSONObject(i);
 			if (carrier.getInt("CarrierId") == carrierId) return carrier.getString("Name");
 		}
 		return null;
