@@ -44,17 +44,12 @@ public class GainPointsController {
 			for (TripBean bean: list) {
 				Date dep = FormatManager.parseDate(bean.getDepartureDate());
 				Date ret = FormatManager.parseDate(bean.getReturnDate());
-				System.out.println("here");
-				System.out.println(bean.getOrganizer().getEmail());
-				System.out.println(userEmail);
 				if (today.after(dep) && today.before(ret)) {
-					System.out.println("user participating to:");
 					if (bean.getOrganizer().getEmail().equals(logged.getEmail())) return bean;
 					
 					if (isParticipant(logged.getEmail(), bean.getParticipants())) return bean;
 				}
 			}
-			System.out.println("No trip is happening today.");
 			return null;
 		} catch (DatabaseException | DBConnectionException | SQLException e1) {
 			throw new DatabaseException(e1.getMessage(), e1.getCause());

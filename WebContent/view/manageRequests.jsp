@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoGlobe - Manage Requests</title>
     
-    <link rel="icon" href="../res/images/favicon.ico">
+    <link rel="icon" href="../res/images/goglobe-favicon.png">
     <link rel="stylesheet" type="text/css" href="../bootstrap-css/bootstrap.css">
     <link rel="stylesheet" href="../css/requests.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -48,7 +48,7 @@
                 <div role="tabpanel" class="tab-pane active" id="incoming">
 
 				<%
-					List<RequestBean> requests = ManageRequestController.getInstance().getUserIncomingRequests(sessionBean);
+					List<RequestBean> requests = ManageRequestController.getInstance().getUserIncomingRequests(sessionBean.getSessionEmail());
 					for (RequestBean req: requests) {
 						request.setAttribute("tripTitle", req.getTripTitle());
 						request.setAttribute("senderName", req.getSenderName());
@@ -97,7 +97,7 @@
                
                 <div role="tabpanel" class="tab-pane" id="sent">
                 	<%
-					List<RequestBean> sentRequests = ManageRequestController.getInstance().getUserSentRequests(sessionBean);
+					List<RequestBean> sentRequests = ManageRequestController.getInstance().getUserSentRequests(sessionBean.getSessionEmail());
                 	if (sentRequests != null) {
                 		for (RequestBean req: sentRequests) {
     						request.setAttribute("tripTitle", req.getTripTitle());

@@ -160,7 +160,7 @@ public class PlanTripGraphic implements GraphicControl {
 			lblErrorMsg.setText(e.getMessage());
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.PLAN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}     	
     }
     
@@ -169,7 +169,6 @@ public class PlanTripGraphic implements GraphicControl {
     	try {
 			planTripBean.validateTrip();
 			Stage stage = (Stage) lblErrorMsg.getScene().getWindow();
-			System.out.println("plan trip bean in plan:"+planTripBean);
 			stage.setScene(GraphicLoader.switchView(GUIType.SHARE, new ShareTripGraphic(sessionBean, planTripBean), session));
 		} catch (TripNotCompletedException e) {
 			lblErrorMsg.setText(e.getMessage());

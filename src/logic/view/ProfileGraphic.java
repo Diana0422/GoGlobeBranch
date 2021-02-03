@@ -125,7 +125,6 @@ public class ProfileGraphic implements GraphicControl {
     private TripBean trip;
     private Number vote;
     private Session session;
-    private static final String WIDGET_ERROR = "Widget loading error.";
     
     public ProfileGraphic(UserBean bean) {
     	this.target = bean;
@@ -149,7 +148,7 @@ public class ProfileGraphic implements GraphicControl {
 			ProfileController.getInstance().updateUserBio(session.getUserEmail(), taBio.getText());
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
     }
     
@@ -176,8 +175,8 @@ public class ProfileGraphic implements GraphicControl {
         			ReviewUserController.getInstance().postReview("ORGANIZER", d, txtComment.getText(), txtTitle.getText(), session.getUserEmail(), target.getEmail(), target);
             	}
         	} catch (DatabaseException e) {
-    			AlertGraphic alert = new AlertGraphic();
-    			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+				AlertGraphic alert = new AlertGraphic();
+				alert.display(e.getMessage(), e.getCause().toString());
     		} catch (UnloggedException e) {
     			lblError.setText(e.getMessage());
 			} 
@@ -187,8 +186,8 @@ public class ProfileGraphic implements GraphicControl {
     			AnchorPane anchor = (AnchorPane) graphic.initializeNode(bean);
     			vbReviews.getChildren().add(anchor);
     		} catch (LoadGraphicException e) {
-    			AlertGraphic alert = new AlertGraphic();
-    			alert.display(GUIType.PROFILE, GUIType.HOME, null, session, WIDGET_ERROR, "Something unexpected occurred displaying review.");
+				AlertGraphic alert = new AlertGraphic();
+				alert.display(e.getMessage(), e.getCause().toString());
     		}
     	} else {
     		lblError.setText("You need to log in first");
@@ -212,7 +211,7 @@ public class ProfileGraphic implements GraphicControl {
 				vbReviews.getChildren().add(anchor);
 			} catch (LoadGraphicException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred displaying review.");
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 		}
 	}
@@ -237,9 +236,9 @@ public class ProfileGraphic implements GraphicControl {
 	public void initialize(URL url, ResourceBundle resource) {
 		try {
 			this.target = ProfileController.getInstance().getProfileUser(target.getEmail());
-		} catch (DatabaseException e1) {
+		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred getting user.");
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 		target.setGraphic(this); // Set the reference to this controller in the user bean to receive updates
 
@@ -269,7 +268,7 @@ public class ProfileGraphic implements GraphicControl {
 			lblRelax.setText(attitude.get("RELAX")+"%");
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 		
 		txtNameSurname.setText(target.getName()+" "+target.getSurname());

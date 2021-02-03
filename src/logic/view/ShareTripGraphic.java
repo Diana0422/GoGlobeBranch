@@ -96,8 +96,8 @@ public class ShareTripGraphic implements GraphicControl {
 	    	planBean.getTripBean().setMaxParticipants("");
 			lblErrorMsg.setText(e.getMessage());
 		} catch (DatabaseException e) {
-			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.SHARE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage() , e.getCause().toString());
+			AlertGraphic graphic = new AlertGraphic();
+			graphic.display(e.getMessage(), e.getCause().toString());
 		}
     }
     
@@ -119,8 +119,8 @@ public class ShareTripGraphic implements GraphicControl {
         try {
             desktop.open(file);
         } catch (IOException e) {
-			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.SHARE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+        	AlertGraphic graphic = new AlertGraphic();
+			graphic.display(e.getMessage(), e.getCause().toString());
         }
     }
 

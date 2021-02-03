@@ -14,39 +14,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AlertGraphic {
-	
-	 @FXML
-	 private Label lblAlertMessage;
 
-	 @FXML
-	 private Label lblAlertDescription;
+    @FXML
+    private Label lblAlertMessage;
 
-	 @FXML
-	 private Button btnOption1;
+    @FXML
+    private Label lblAlertDescription;
 
-	 @FXML
-	 private Button btnOption2;
+    @FXML
+    private Button btnClose;
 	
 	 
-	 public void setData(Stage alertStage, String message, String description, GUIType current, GUIType buttonOption2, Object recBundle, Object forBundle) {
-		 String buttonOption1 = "Close";
+	 public void setData(Stage alertStage, String message, String description) {
 		 lblAlertMessage.setText(message);
 		 lblAlertDescription.setText(description);
-		 btnOption1.setText(buttonOption1);
-		 btnOption2.setText(buttonOption2.toString());
-		 
-		 btnOption2.setOnAction(e -> {
-			 alertStage.close();
-			 DesktopSessionContext.getGuiLoader().loadGUIStateful(recBundle, forBundle, buttonOption2, current);
-		 	}
-		 );
-		 
-		 btnOption1.setOnAction(e-> alertStage.close());
-		 
-		 
+		 btnClose.setText("Close");
+		 btnClose.setOnAction(e-> alertStage.close());
 	 }
 	 
-	 public void display(GUIType current, GUIType forwardOption, Object recBundle, Object forBundle, String message, String description) {
+	 public void display(String message, String description) {
 		 Stage popup = new Stage();
 		 popup.initModality(Modality.APPLICATION_MODAL);
 		 popup.setTitle("Alert");
@@ -56,8 +42,8 @@ public class AlertGraphic {
 		 try {
 			Parent root = loader.load();
 			AlertGraphic alert = loader.getController();
-			alert.setData(popup, message, description, current, forwardOption, recBundle, forBundle);
-			Scene scene = new Scene(root, 444,271);
+			alert.setData(popup, message, description);
+			Scene scene = new Scene(root, 624, 424);
 			popup.setScene(scene);
 			popup.show();
 			

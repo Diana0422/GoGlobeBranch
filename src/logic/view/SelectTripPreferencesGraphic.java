@@ -101,7 +101,6 @@ public class SelectTripPreferencesGraphic implements GraphicControl {
 	@Override
 	public void setSession(Session session) {
 		this.session = session;
-		System.out.println("trip pref session:"+session);
 	}
 	
 

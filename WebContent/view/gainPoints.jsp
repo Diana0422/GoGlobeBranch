@@ -33,7 +33,7 @@
 			TripBean todayTrip = GainPointsController.getInstance().getTripOfTheDay(sessionBean.getSessionEmail());
 			
 			if (request.getParameter("gainpoints") != null) {
-				if (GainPointsController.getInstance().verifyParticipation(sessionBean, todayTrip)) {
+				if (GainPointsController.getInstance().verifyParticipation(sessionBean.getSessionEmail(), todayTrip)) {
 					request.setAttribute("mess", "Trip successfully validated. You gained 100 points.");
 				} else {
 					request.setAttribute("mess", "Cannot validate trip. You don't gain any points.");

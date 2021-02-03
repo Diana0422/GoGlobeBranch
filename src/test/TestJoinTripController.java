@@ -17,6 +17,7 @@ import logic.bean.TripBean;
 import logic.control.JoinTripController;
 import logic.control.LoginController;
 import logic.model.User;
+import logic.model.exceptions.APIException;
 import logic.model.exceptions.UnloggedException;
 import logic.persistence.dao.RequestDao;
 import logic.persistence.dao.UserDaoDB;
@@ -35,9 +36,11 @@ public class TestJoinTripController {
 	private static final String NOT_ORGANIZER_ID = "notorganizer@gmail.com";
 	private static final String PARTICIPANT = "participant@gmail.com";
 	private JoinTripController controller;
+	private LoginController loginCtrl;
 	
 	public TestJoinTripController() {
 		this.controller = new JoinTripController();
+		this.loginCtrl = new LoginController();
 	}
 
 	/* SEARCH TRIPS TEST */
@@ -49,7 +52,7 @@ public class TestJoinTripController {
 			List<TripBean> trips = controller.searchTrips(value);
 			TripBean onlyTrip = trips.get(0);
 			assertEquals(value, onlyTrip.getTitle());
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | APIException e) {
 			String logStr = "testSearchTripsSuccessful() SHOULD NOT throw exception "+e;
 			Logger.getGlobal().log(Level.INFO, logStr);
 		}
@@ -66,7 +69,7 @@ public class TestJoinTripController {
 			String logStr = "Trips search result for value ="+value+"is ---"+empty;
 			Logger.getGlobal().log(Level.INFO, logStr);
 			assertEquals(false, empty.isEmpty());
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | APIException e) {
 			String logStr = "testSearchTripsNoResults() SHOULD NOT THROW exception "+e;
 			Logger.getGlobal().log(Level.INFO, logStr);
 		}
@@ -145,7 +148,7 @@ public class TestJoinTripController {
 		try {
 			/* User is logged */
 			User logged = UserDaoDB.getInstance().get(userEmail);
-			LoginController.getInstance().login(logged.getEmail(), logged.getPassword());
+			loginCtrl.login(logged.getEmail(), logged.getPassword());
 			/* Delete if another request exists */
 			if (RequestDao.getInstance().getRequest(userEmail, tripTitle) != null) RequestDao.getInstance().delete(tripTitle, userEmail);
 			boolean result = controller.sendRequest(trip.getTitle(), logged.getEmail());
@@ -168,7 +171,7 @@ public class TestJoinTripController {
 		try {
 			// user is logged
 			User logged = UserDaoDB.getInstance().get(userEmail);
-			LoginController.getInstance().login(logged.getEmail(), logged.getPassword());
+			loginCtrl.login(logged.getEmail(), logged.getPassword());
 			controller.sendRequest(trip.getTitle(), logged.getEmail());
 		} catch (DatabaseException | UnloggedException | DBConnectionException | SQLException e) {
 			String logStr = "testSendRequestNotSuccessfulRequestAlreadySent() threw exception "+e;

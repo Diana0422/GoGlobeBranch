@@ -41,9 +41,11 @@ public class JoinTripController {
 			List<Trip> trips = TripDao.getInstance().getSharedTrips();
 			if (value == null) return converter.convertToListBean(trips);
 			for (Trip trip: trips) {
-				if (trip.getTitle().toLowerCase().contains(value.toLowerCase()) && trip.getAvailableSpots() != 0) filteredTrips.add(trip);
+				boolean cond1 = trip.getAvailableSpots() != 0;
+				boolean cond2 = trip.getTitle().toLowerCase().contains(value.toLowerCase());
 				for (Day day: trip.getDays()) {
-					if (checkCountry(day.getLocation().getCity(), value)) filteredTrips.add(trip);
+					boolean cond3 = checkCountry(day.getLocation().getCity(), value);
+					if (cond1 && (cond2 || cond3)) filteredTrips.add(trip);
 				}
 			}
 			/* Convert List<Trip> into List<TripBean> */

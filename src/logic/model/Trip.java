@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import logic.control.FormatManager;
+import logic.persistence.exceptions.DatabaseException;
 
 public class Trip {
 	
@@ -40,7 +41,7 @@ public class Trip {
 		this.returnDate = FormatManager.parseDate(returnDate);
 	}
 	
-	public void addParticipant(User participant) {
+	public void addParticipant(User participant) throws DatabaseException {
 		getParticipants().add(participant);
 		participant.recalculateAttitude(this.category1, this.category2);
 	}

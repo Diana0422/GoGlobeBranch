@@ -61,6 +61,5 @@ public class HomeGraphic implements GraphicControl {
 	@Override
 	public void setSession(Session session) {
 		this.session = session;
-		System.out.println("home session:"+this.session);
 	}
 }

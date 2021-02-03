@@ -52,9 +52,9 @@
 <%
 	if (request.getParameter("signin") != null){
 		if (loginBean.validate()){
-			
+			LoginController controller = new LoginController();
 			try {
-				if ((loginBean = LoginController.getInstance().login(loginBean.getUsername(), loginBean.getPassword())) != null) {
+				if ((loginBean = controller.login(loginBean.getUsername(), loginBean.getPassword())) != null) {
 					sessionBean.setSessionName(loginBean.getNome());
 					sessionBean.setSessionSurname(loginBean.getCognome());
 					sessionBean.setSessionEmail(loginBean.getUsername());

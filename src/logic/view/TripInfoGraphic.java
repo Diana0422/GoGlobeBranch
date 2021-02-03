@@ -164,8 +164,8 @@ public class TripInfoGraphic implements GraphicControl {
 			lblDestination.setText(FlightController.getInstance().retrieveFlightDestination(tripBean));
 			lblCarrier.setText(FlightController.getInstance().retrieveFlightCarrier(tripBean));
 		} catch (DatabaseException e) {
-			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.INFO, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			AlertGraphic graphic = new AlertGraphic();
+			graphic.display(e.getMessage(), e.getCause().toString());
 		}
 	
 	}
@@ -179,7 +179,7 @@ public class TripInfoGraphic implements GraphicControl {
 			vbox.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.JOIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred loading activity cards.");
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 	}
 
@@ -188,19 +188,19 @@ public class TripInfoGraphic implements GraphicControl {
 		if (session != null) {
 			try {
 				if (controller.sendRequest(tripBean.getTitle(), session.getUserEmail())) {
-					AlertGraphic alert = new AlertGraphic();
-					alert.display(GUIType.INFO, GUIType.REQUESTS, null, tripBean, "Request sent to organizer.", "Choose an option.");
+					AlertGraphic graphic = new AlertGraphic();
+					graphic.display("Request sent to organizer.", "The trip organizer needs to accept your request for you to join.");
 				} else {
-					AlertGraphic alert = new AlertGraphic();
-					alert.display(GUIType.INFO, GUIType.REQUESTS, null, tripBean, "You are not eligible to join.", "Choose an option.");
+					AlertGraphic graphic = new AlertGraphic();
+					graphic.display("You are not eligible to join.", "Please choose another trip.");
 				}
 			} catch (DatabaseException | UnloggedException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.INFO, GUIType.HOME, null, session, e.getMessage(), e.getCause().toString());
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 		} else {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.INFO, GUIType.LOGIN, null, tripBean, "You are not logged in.", "Register or login first.");
+			alert.display("You are not logged in.", "Register or login first.");
 		}
 	}
 	
@@ -212,7 +212,7 @@ public class TripInfoGraphic implements GraphicControl {
 			boxOrganizer.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.JOIN, GUIType.HOME, null, session, WIDGET_ERROR, "Something unexpected occurred displaying organizer.");
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 	}
 	
@@ -233,7 +233,7 @@ public class TripInfoGraphic implements GraphicControl {
 			boxTravelers.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.JOIN, GUIType.HOME, null, session, WIDGET_ERROR, "Something unexpected occurred displaying user.");
+			alert.display(e.getMessage(), e.getCause().toString());
 		}	
 	}
 

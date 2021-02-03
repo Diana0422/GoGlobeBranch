@@ -48,16 +48,15 @@ public class GainPointsGraphic implements GraphicControl {
 	void onGainPoints(MouseEvent event) {
 		try {
 			if (GainPointsController.getInstance().verifyParticipation(session.getUserEmail(), getTrip())) {
-				AlertGraphic graphic = new AlertGraphic();
-				graphic.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(),  "Trip validated successfully.", "You gained 100 points");
-			
+				AlertGraphic alert = new AlertGraphic();
+				alert.display("Trip validated successfully.", "You gained 100 points");
 			} else {
-				AlertGraphic graphic = new AlertGraphic();
-				graphic.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), "Can't validate trip.", "You don't gain any points");
+				AlertGraphic alert = new AlertGraphic();
+				alert.display("Can't validate trip.", "You don't gain any points");
 			}
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.toString(), e.getMessage());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 	}
 	
@@ -78,7 +77,7 @@ public class GainPointsGraphic implements GraphicControl {
 			setTrip(GainPointsController.getInstance().getTripOfTheDay(session.getUserEmail()));
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.GAIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 		if (getTrip() != null) {
 			int column = 0;
@@ -91,8 +90,8 @@ public class GainPointsGraphic implements GraphicControl {
 				cardsLayout.add(anchor, column, row);
 				GridPane.setMargin(anchor, new Insets(20));
 			} catch (LoadGraphicException e) {
-				AlertGraphic graphic = new AlertGraphic();
-				graphic.display(GUIType.JOIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), "Widget loading error.", "Something unexpected occurred loading the trip card.");
+				AlertGraphic alert = new AlertGraphic();
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 								
 			// Set grid height

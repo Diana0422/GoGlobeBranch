@@ -55,8 +55,6 @@ public class CardGraphic implements Initializable {
     @FXML
     private Button btnMore;
     
-    private static final String WIDGET_ERROR = "Widget loading error.";
-    
     /* Beans */
     
     private TripBean tripBean;
@@ -145,8 +143,8 @@ public class CardGraphic implements Initializable {
 					cardGrid.add(anchor, column++, row);
 					GridPane.setMargin(anchor, new Insets(20));
 				} catch (LoadGraphicException e) {
-					AlertGraphic graphic = new AlertGraphic();
-					graphic.display(GUIType.PROFILE, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred loading the trip cards.");
+					AlertGraphic alert = new AlertGraphic();
+					alert.display(e.getMessage(), e.getCause().toString());
 				}
 						
 				// Set grid height

@@ -74,7 +74,7 @@ public class RequestItemGraphic implements Initializable {
 	    	lblStatus.setStyle("-fx-text-fill: green;");
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(null, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
     }
     
@@ -84,7 +84,7 @@ public class RequestItemGraphic implements Initializable {
 			ManageRequestController.getInstance().declineRequest(getRequest());
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(null, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
     }
     
@@ -97,7 +97,7 @@ public class RequestItemGraphic implements Initializable {
 	    	lblStatus.setStyle("-fx-text-fill: red;");
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(null, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
     }
     

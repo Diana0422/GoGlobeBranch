@@ -191,6 +191,7 @@ public class TripDao {
 					t.setDescription(desc);
 					t.setShared(true);
 					t.setDays(DayDao.getInstance().getTripDays(title));
+					t.setParticipants(UserDaoDB.getInstance().getTripParticipants(title));
 					trips.add(t);
 				} while(rs.next());
 			}
@@ -254,6 +255,8 @@ public class TripDao {
 					t.setMinAge(minAge);
 					t.setDescription(desc);
 					t.setShared(true);
+					t.setDays(DayDao.getInstance().getTripDays(title));
+					t.setParticipants(UserDaoDB.getInstance().getTripParticipants(title));
 					
 					trips.add(t);
 				} while (rs.next());

@@ -32,7 +32,6 @@ public class RegistrationController {
 		try {
 			if (UserDaoDB.getInstance().save(user)) {
 				Session session = new Session();
-				session = new Session();
 				session.setUserName(user.getName());
 				session.setUserSurname(user.getSurname());
 				session.setUserEmail(email);

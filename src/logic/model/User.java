@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-
 import logic.persistence.dao.UserStatsDao;
 import logic.persistence.exceptions.DBConnectionException;
 import logic.persistence.exceptions.DatabaseException;
@@ -103,10 +102,15 @@ public class User {
 		}
 	}
 	
-	public void recalculateAttitude(TripCategory category1, TripCategory category2) {
+	public void recalculateAttitude(TripCategory category1, TripCategory category2) throws DatabaseException {
 		// Calculate user's traveling attitude
 		this.setAttitude(category1);
 		this.setAttitude(category2);
+		try {
+			UserStatsDao.getInstance().updateAttitude(this.email, this.getAttitudeValue(TripCategory.FUN), this.getAttitudeValue(TripCategory.CULTURE), this.getAttitudeValue(TripCategory.RELAX), this.getAttitudeValue(TripCategory.ADVENTURE));
+		} catch (SQLException | DBConnectionException e) {
+			throw new DatabaseException(e.getMessage(), e);
+		}
 	}
 
 	

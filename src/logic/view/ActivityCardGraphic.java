@@ -25,9 +25,6 @@ public class ActivityCardGraphic {
     @FXML
     private Text txtActivityCost;
     
-    private static final String WIDGET_ERROR = "Widget loading error.";
-    
-    
     public void setData(ActivityBean activity) {
     	txtTitle.setText(activity.getTitle());
     	txtTime.setText(activity.getTime());
@@ -56,7 +53,7 @@ public class ActivityCardGraphic {
 			vbActivities.getChildren().add(node);
 		} catch (LoadGraphicException e) {
 			AlertGraphic graphic = new AlertGraphic();
-			graphic.display(GUIType.PLAN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred loading the trip cards.");
+			graphic.display(e.getMessage(), e.getCause().toString());
 		}
 	}
 

@@ -27,7 +27,11 @@
     color: white; 
 }
 
+form {
+	width: 50%;
+}
+
 .combobox-location {
     margin-top: 10%;
-    width: 50%;
+    display: flex;
 }

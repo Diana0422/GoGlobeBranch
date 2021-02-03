@@ -67,7 +67,7 @@ public class RegistrationGraphic {
 				}
 			} catch (DatabaseException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.REGISTER, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 		}
     }

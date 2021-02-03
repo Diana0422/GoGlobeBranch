@@ -32,7 +32,7 @@ public class ManageRequestGraphic implements GraphicControl {
 				incResults.getChildren().add(anchor);
 			} catch (LoadGraphicException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.REQUESTS, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), "Widget loading error.", "Something unexpected occurred loading the requests.");
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 		} else {
 			try {
@@ -40,7 +40,7 @@ public class ManageRequestGraphic implements GraphicControl {
 				sentResults.getChildren().add(anchor);
 			} catch (LoadGraphicException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.REQUESTS, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), "Widget loading error.", "Something unexpected occurred loading the requests.");
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
 		}
 	}
@@ -67,7 +67,7 @@ public class ManageRequestGraphic implements GraphicControl {
 			}
 		} catch (DatabaseException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.REQUESTS, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+			alert.display(e.getMessage(), e.getCause().toString());
 		}	
 	}
 
@@ -75,7 +75,6 @@ public class ManageRequestGraphic implements GraphicControl {
 	@Override
 	public void setSession(Session session) {
 		this.session = session;
-		System.out.println("Manage requests session:"+session);
 	}
 	
 }

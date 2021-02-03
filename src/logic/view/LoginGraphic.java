@@ -44,9 +44,9 @@ public class LoginGraphic {
     	Logger.getGlobal().info(logStr);
     	if (loginBean.validate()) {
     		try {
-				if ((loginBean = LoginController.getInstance().login(loginBean.getUsername(), loginBean.getPassword())) != null) {
+    			LoginController controller = new LoginController();
+				if ((loginBean = controller.login(loginBean.getUsername(), loginBean.getPassword())) != null) {
 					Stage stage = (Stage) lblError.getScene().getWindow();
-//					System.out.println(Cookie.getInstance().getSession(loginBean.getUsername()));
 					stage.setScene(GraphicLoader.switchView(GUIType.HOME, new HomeGraphic(), Cookie.getInstance().getSession(loginBean.getUsername())));
 				} else {
 					lblError.setText("This user isn't registered.");
@@ -54,7 +54,7 @@ public class LoginGraphic {
 				}
 			} catch (DatabaseException e) {
 				AlertGraphic alert = new AlertGraphic();
-				alert.display(GUIType.LOGIN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.getCause().toString());
+				alert.display(e.getMessage(), e.getCause().toString());
 			}
     	}else {
 			lblError.setText("Some fields are still empty.");

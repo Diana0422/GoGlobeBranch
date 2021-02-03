@@ -2,7 +2,6 @@ package logic.view;
 
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -23,7 +22,6 @@ public class SuggestionCardGraphic {
 	
 
 	private static final String  IC_SUGG_BTN = "googlemaps-icon-50.png";
-	private static final String WIDGET_ERROR = "Widget loading error.";
 	private String placeName;
 
     @FXML
@@ -46,12 +44,9 @@ public class SuggestionCardGraphic {
     	String url = "https://maps.google.com/?q=" + placeName.replace(" ", "+");
     	try {
 			Desktop.getDesktop().browse(new URL(url).toURI());
-		} catch (MalformedURLException | URISyntaxException e) {
+		} catch (URISyntaxException | IOException e) {
 			AlertGraphic graphic = new AlertGraphic();
-			graphic.display(GUIType.PLAN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), "The url is not correct.", e.toString());
-		} catch (IOException e) {
-			AlertGraphic graphic = new AlertGraphic();
-			graphic.display(GUIType.PLAN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), e.getMessage(), e.toString());
+			graphic.display(e.getMessage(), e.getCause().toString());
 		}
     }
     
@@ -96,7 +91,7 @@ public class SuggestionCardGraphic {
 			vbSuggestions.getChildren().add(anchor);
 		} catch (LoadGraphicException e) {
 			AlertGraphic graphic = new AlertGraphic();
-			graphic.display(GUIType.PLAN, GUIType.HOME, null, DesktopSessionContext.getInstance().getSession(), WIDGET_ERROR, "Something unexpected occurred loading the suggestion cards.");
+			graphic.display(e.getMessage(), e.getCause().toString());
 		}
 	}
     

@@ -63,9 +63,7 @@ public class JoinTripGraphic implements GraphicControl {
 			if (session != null) {
 				this.tripBeans = controller.getSuggestedTrips(session.getUserEmail());
 			} else {
-				System.out.println(this.searchVal);
 				if (searchVal != null) {
-					System.out.println(this.searchVal);
 					this.tripBeans = controller.searchTrips(this.searchVal);
 				} else {
 					this.tripBeans = controller.searchTrips(txtSearch.getText());	
@@ -73,12 +71,9 @@ public class JoinTripGraphic implements GraphicControl {
 			}
 			CardGraphic cc = new CardGraphic();
 			cc.loadCardGrid(cardsLayout, this.tripBeans, session);
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | APIException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.JOIN, GUIType.HOME, null, session.getUserEmail(), e.getMessage(), e.getCause().toString());
-		} catch (APIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 	}
 	
@@ -86,12 +81,9 @@ public class JoinTripGraphic implements GraphicControl {
 	public void search(MouseEvent event) {
 		try {
 			this.tripBeans = controller.searchTrips(txtSearch.getText());
-		} catch (DatabaseException e) {
+		} catch (DatabaseException | APIException e) {
 			AlertGraphic alert = new AlertGraphic();
-			alert.display(GUIType.JOIN, GUIType.HOME, null, session.getUserEmail(), e.getMessage(), e.getCause().toString());
-		} catch (APIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			alert.display(e.getMessage(), e.getCause().toString());
 		}
 		CardGraphic cc = new CardGraphic();
 		cc.loadCardGrid(cardsLayout, this.tripBeans, session);
@@ -152,6 +144,5 @@ public class JoinTripGraphic implements GraphicControl {
 	@Override
 	public void setSession(Session session) {
 		this.session = session;
-		System.out.println("join trip session:"+this.session);
 	}
 }

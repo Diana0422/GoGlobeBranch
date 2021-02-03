@@ -12,19 +12,6 @@ import logic.model.User;
 
 public class LoginController {
 	
-	private static LoginController instance;
-	
-	private LoginController(){
-		
-	}
-	
-	public static synchronized LoginController getInstance() {
-		if (instance == null) {
-			instance = new LoginController();
-		}
-		return instance;
-	}
-	
 	public LoginBean login(String username, String password) throws DatabaseException { 
 		
 		

@@ -14,7 +14,6 @@ public class Launcher extends Application {
 	public void start(Stage stage) {
 		
 		Scene scene = GraphicLoader.switchView(GUIType.MAIN, null);
-		
  		try {
 			initStage(stage, scene);
 		} catch (UnavailableConfigurationException e) {
