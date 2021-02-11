@@ -34,11 +34,13 @@
         <div id="preferences-form">
         <h2>To share your trip insert the following info.</h2>
 <%
+	PlanTripController controller = new PlanTripController();
+
 	if (request.getParameter("share-btn") != null){
 		try {
 				planTripBean.validateSharingPref();
 				tripBean.setShared(true);
-	    		PlanTripController.getInstance().saveTrip(planTripBean.getTripBean(), sessionBean); 
+	    		controller.saveTrip(planTripBean.getTripBean(), sessionBean.getSessionEmail()); 
 				System.out.println("VIAGGIO SALVATO COME CONDIVISO");
 	%>		
 				

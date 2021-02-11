@@ -25,7 +25,7 @@ public class HereImplementation {
         					+ "&size=50"
         					+ "&pretty"))
         			.method("GET", HttpRequest.BodyPublishers.noBody())
-        			.header("Accepted-Language", "en-en")
+        			.header("Accepted-Language", "it-it")
         			.build();
  
         
@@ -42,18 +42,19 @@ public class HereImplementation {
 
 	
 	//GET LOCATION'S GEOCODE INFORMATION	
-	public JSONObject getLocationInfo(String locationName) throws IOException, InterruptedException {				
-           return getGeocodeResponse(locationName);            	
+	public JSONObject getLocationInfo(String locationName, String locale) throws IOException, InterruptedException {				
+           return getGeocodeResponse(locationName, locale);            	
     }
 	
 	//SEND GEOCODE REQUEST FOR locationName
-	public JSONObject getGeocodeResponse(String locationName) throws IOException, InterruptedException {
+	public JSONObject getGeocodeResponse(String locationName, String locale) throws IOException, InterruptedException {
 		try {
 			//Generating request
 			HttpRequest request = HttpRequest.newBuilder()
 					.uri(URI.create("https://geocode.search.hereapi.com/v1/"
-							+"geocode" 
+							+"geocode"
 							+"?q=" + locationName
+							+ "&lang="+locale
 							+"&apiKey=" + API_KEY))
 					.method("GET", HttpRequest.BodyPublishers.noBody())
 					.build();       

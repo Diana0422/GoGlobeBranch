@@ -7,25 +7,11 @@
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-2020-09/eclipse/"/>
     <property name="PATH_TO_FX" value="&quot;C:\Users\dayli\eclipse\JavaFX 11\javafx-sdk-11.0.2\lib&quot;"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
-    <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
-    </path>
+    <path id="JavaFX15.userclasspath"/>
     <path id="JavaFX 11.userclasspath">
         <pathelement location="../../eclipse/JavaFX 11/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
         <pathelement location="../../eclipse/JavaFX 11/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
@@ -70,31 +56,708 @@
         <pathelement location="../../OneDrive/Documenti/Apache Tomcat v9.0/apache-tomcat-9.0.41/lib/tomcat-websocket.jar"/>
         <pathelement location="../../OneDrive/Documenti/Apache Tomcat v9.0/apache-tomcat-9.0.41/lib/websocket-api.jar"/>
     </path>
-    <path id="Web App Libraries.libraryclasspath"/>
-    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+    </path>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.7.0.v20201026-1537.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
     <path id="ISPWProject20-21.classpath">
         <pathelement location="build/classes"/>
-        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="JavaFX15.userclasspath"/>
         <path refid="JavaFX 11.userclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.AllJoinTripTests.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.AllTests (1).classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.AllTests.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.ConnectionManager.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.JoinTripController.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.Launcher.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
     </path>
     <path id="run.Main (2).classpath">
         <path refid="ISPWProject20-21.classpath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="JavaFX15.userclasspath"/>
         <path refid="JavaFX 11.userclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.ManageRequestController.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.ManageRequestGraphic.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.ParticipationController.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
     </path>
     <path id="run.PersistenceController.classpath">
         <path refid="ISPWProject20-21.classpath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="JavaFX15.userclasspath"/>
         <path refid="JavaFX 11.userclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestJoinTripController (1).classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestJoinTripController.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestRegistrationController.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestRunner.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestSearchTripSelenium.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.TestTripInfoSelenium.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
+    </path>
+    <path id="run.UserDaoDB.classpath">
+        <path refid="ISPWProject20-21.classpath"/>
+        <path refid="JavaFX15.userclasspath"/>
+        <path refid="JavaFX 11.userclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <pathelement location="lib/httpclient/commons-cli-1.4.jar"/>
+        <pathelement location="lib/httpclient/commons-codec-1.13.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-cache-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-fluent-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-testing-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpclient5-win-5.0.3.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-h2-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-reactive-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/httpcore5-testing-5.0.2.jar"/>
+        <pathelement location="lib/httpclient/jna-5.2.0.jar"/>
+        <pathelement location="lib/httpclient/jna-platform-5.2.0.jar"/>
+        <pathelement location="lib/json/json.jar"/>
+        <pathelement location="lib/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/httpclient/reactive-streams-1.0.2.jar"/>
+        <pathelement location="lib/httpclient/rxjava-2.2.8.jar"/>
+        <pathelement location="lib/httpclient/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/httpclient/slf4j-nop-1.7.9.jar"/>
+        <pathelement location="lib/controlsfx/controlsfx-11.0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="lib/selenium/byte-buddy-1.8.15.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59.jar"/>
+        <pathelement location="lib/selenium/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="lib/selenium/commons-exec-1.3.jar"/>
+        <pathelement location="lib/selenium/guava-25.0-jre.jar"/>
+        <pathelement location="lib/selenium/okhttp-3.11.0.jar"/>
+        <pathelement location="lib/selenium/okio-1.14.0.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -131,15 +794,136 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="AllJoinTripTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AllJoinTripTests" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AllJoinTripTests.classpath"/>
+        </junit>
+    </target>
+    <target name="AllTests (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.control.AllTests" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AllTests (1).classpath"/>
+        </junit>
+    </target>
+    <target name="AllTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AllTests" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.AllTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ConnectionManager">
+        <java classname="logic.persistence.ConnectionManager" failonerror="true" fork="yes">
+            <classpath refid="run.ConnectionManager.classpath"/>
+        </java>
+    </target>
+    <target name="JoinTripController">
+        <java classname="logic.control.JoinTripController" failonerror="true" fork="yes">
+            <classpath refid="run.JoinTripController.classpath"/>
+        </java>
+    </target>
+    <target name="Launcher">
+        <java classname="logic.view.Launcher" failonerror="true" fork="yes">
+            <jvmarg line="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml"/>
+            <classpath refid="run.Launcher.classpath"/>
+        </java>
+    </target>
     <target name="Main (2)">
         <java classname="logic.view.Main" failonerror="true" fork="yes">
             <jvmarg line="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml"/>
             <classpath refid="run.Main (2).classpath"/>
         </java>
     </target>
+    <target name="ManageRequestController">
+        <java classname="logic.control.ManageRequestController" failonerror="true" fork="yes">
+            <classpath refid="run.ManageRequestController.classpath"/>
+        </java>
+    </target>
+    <target name="ManageRequestGraphic">
+        <java classname="logic.view.control.ManageRequestGraphic" failonerror="true" fork="yes">
+            <classpath refid="run.ManageRequestGraphic.classpath"/>
+        </java>
+    </target>
+    <target name="ParticipationController">
+        <java classname="logic.control.ParticipationController" failonerror="true" fork="yes">
+            <classpath refid="run.ParticipationController.classpath"/>
+        </java>
+    </target>
     <target name="PersistenceController">
         <java classname="logic.control.PersistenceController" failonerror="true" fork="yes">
             <classpath refid="run.PersistenceController.classpath"/>
         </java>
+    </target>
+    <target name="TestJoinTripController (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestJoinTripController" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestJoinTripController (1).classpath"/>
+        </junit>
+    </target>
+    <target name="TestJoinTripController">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.control.TestJoinTripController" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestJoinTripController.classpath"/>
+        </junit>
+    </target>
+    <target name="TestRegistrationController">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.control.TestRegistrationController" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestRegistrationController.classpath"/>
+        </junit>
+    </target>
+    <target name="TestRunner">
+        <java classname="test.TestRunner" failonerror="true" fork="yes">
+            <classpath refid="run.TestRunner.classpath"/>
+        </java>
+    </target>
+    <target name="TestSearchTripSelenium">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.selenium.TestSearchTripSelenium" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestSearchTripSelenium.classpath"/>
+        </junit>
+    </target>
+    <target name="TestTripInfoSelenium">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.selenium.TestTripInfoSelenium" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestTripInfoSelenium.classpath"/>
+        </junit>
+    </target>
+    <target name="UserDaoDB">
+        <java classname="logic.persistence.dao.UserDaoDB" failonerror="true" fork="yes">
+            <classpath refid="run.UserDaoDB.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>

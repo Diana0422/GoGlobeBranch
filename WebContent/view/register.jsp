@@ -29,6 +29,7 @@
 <body id="bootstrap-override">
 
 <%
+	RegistrationController controller = new RegistrationController();
 	if (sessionBean.getSessionEmail() != null) {
 		%>
 		  <%@ include file="html/loggedNavbar.html" %>
@@ -51,7 +52,7 @@
     				if (request.getParameter("signin") != null) {
     					try {
         					if (registerBean.validate()) {
-        						registerBean.setSession(RegistrationController.getInstance().register(registerBean.getRegBeanEmail(), registerBean.getPassword(), registerBean.getRegBeanName(), registerBean.getRegBeanSurname(), registerBean.getBirthday()));
+        						registerBean.setSession(controller.register(registerBean.getRegBeanEmail(), registerBean.getPassword(), registerBean.getRegBeanName(), registerBean.getRegBeanSurname(), registerBean.getBirthday()));
         						sessionBean.setSessionEmail(registerBean.getSession().getSessionEmail());
         						sessionBean.setSessionName(registerBean.getSession().getSessionName());
         						sessionBean.setSessionSurname(registerBean.getSession().getSessionSurname());

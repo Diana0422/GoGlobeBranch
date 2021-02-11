@@ -57,10 +57,12 @@ public class UserStatsDao {
 				rs.first();
 				Double orgRating = rs.getDouble("organizer_rating");
 				Double travRating = rs.getDouble("traveler_rating");
-				
+				int points = rs.getInt("points");
 				us = new UserStats();
 				us.setOrganizerRating(orgRating);
 				us.setTravelerRating(travRating);
+				us.setPoints(points);
+				
 			}
 			
 			return us;

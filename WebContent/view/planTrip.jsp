@@ -11,6 +11,8 @@
 <%@page import="logic.control.PlanTripController"%>
 <%@page import="logic.persistence.exceptions.DatabaseException"%>
 <%@page import="logic.model.exceptions.TripNotCompletedException"%>
+<%@page import="logic.model.exceptions.FormInputException"%>
+<%@page import="logic.model.exceptions.APIException"%>
 <jsp:useBean id="planTripBean" scope="session" class="logic.bean.PlanTripBean"/>
 <jsp:useBean id="tripBean" scope="session" class="logic.bean.TripBean"/>
 <jsp:useBean id="activityBean" scope="request" class="logic.bean.ActivityBean"/> 
@@ -37,7 +39,9 @@
 </head>
 <body id="bootstrap-override">
 
-	<% List<PlaceBean> suggestions = null; %>
+	<% List<PlaceBean> suggestions = null;
+	   PlanTripController controller = new PlanTripController();
+	%>
     
 	<%@ include file="html/loggedNavbar.html" %>
     
@@ -81,14 +85,17 @@
             
             <div class="day" id="day">
             	<div class="form">
-	            <h1 id="trip-title"><%= tripBean.getTitle() %></h1>
+					<div id="header">
+						<h1 id="trip-title"><%= tripBean.getTitle() %></h1>
+	            		<h1 id="country"><%= tripBean.getCountry() %></h1>
+					</div>
 	           
 	           <!--  IF SAVE TRIP IS CLICKED -->  
 				<%
 				if (request.getParameter("save-trip-btn") != null){
 					try {
 						planTripBean.validateTrip();
-				    		PlanTripController.getInstance().saveTrip(tripBean, sessionBean); 
+				    		controller.saveTrip(tripBean, sessionBean.getSessionEmail()); 
 							%>
 							<jsp:forward page="home.jsp"/>
 							<% 
@@ -130,10 +137,19 @@
   		
  <%		
 		 if (request.getParameter("save-location-btn") != null){
-			 if (planTripBean.validateLocation()){
-				planTripBean.saveLocation();
-			 }
+			try {
+				 if (controller.checkLocationValidity(planTripBean.getLocation(), planTripBean.getTripBean())) {
+					 if (planTripBean.validateLocation()){
+							planTripBean.saveLocation();
+							planTripBean.setLocation("");
+						 }
+				 } else {
+					 request.setAttribute("locErr", "the location is not in country "+planTripBean.getTripBean().getCountry());
+				 }
+			} catch (APIException e) {
+				request.setAttribute("locErr", "the location doesn't exist");
 			}
+		}
  
  		if (planTripBean.checkDay()){
  			
@@ -142,10 +158,11 @@
                	<!--  Location Form -->
 			   <form method="POST" action="planTrip.jsp">
 			   	 <div class="location-form form">
+			   	 	  <h6 style="color: red">${locErr}</h6>
 				   	  <div class="form-group row">
-					    <label for="inputPassword" class="col-sm-2 col-form-label"><h6>Location</h6></label>
+					    <label for="inputPassword" class="col-sm-2 col-form-label"><h6 style="width: fit-content;">Location</h6></label>
 					    <div class="col-sm-10">
-					      <input  type="text" name="location" class="form-control" id="inputLocation" placeholder="Insert Location...">
+					      <input type="text" name="location" class="form-control" id="inputLocation" style="width: 100%M" placeholder="Insert Location...">
 					    </div>
 					  </div>
                 	<button type="submit" class="btn btn-colors btn-lg btn-block" name="save-location-btn"  >Save Location</button>	               	                           	
@@ -156,7 +173,7 @@
  		}else{
  %>            
                
-             	<h3>Location: <%=planTripBean.getDayLocation() %></h3>
+             	<h3>Location: <%=planTripBean.getTripBean().getDays().get(planTripBean.getPlanningDay()).getLocationCity() %></h3>
              </div>
                 <div class="day-plan">
                 	<!-- NEW ACTIVITY FORM -->
@@ -164,19 +181,24 @@
                   		<div class="activity-form">
 <%
 		if (request.getParameter("save-activity-btn") != null){
-			if (activityBean.validateActivity()){
-				//planTripBean.addActivity(activityBean);	
-				PlanTripController.getInstance().addActivity(planTripBean, activityBean);
-			}else{
-				activityBean.setDescription("");
-				activityBean.setTitle("");
-				activityBean.setEstimatedCost("");
-				activityBean.setTime("");
+			try{
+				if (activityBean.validateActivity()){	
+					controller.addActivity(planTripBean.getTripBean(), planTripBean.getPlanningDay(), activityBean);
+				}else{
+					activityBean.setDescription("");
+					activityBean.setTitle("");
+					activityBean.setEstimatedCost("");
+					activityBean.setTime("");
 %>
-				<p style="color: red">ERRORE</p>
+					<p style="color: red">ERRORE</p>
 <% 
-			}
-		}		                    
+				}
+			}catch(FormInputException e){
+%>
+				<p style="color: red"><%=e.getMessage() %></p>	
+<% 
+		}
+	}		                    
 %>
                         	<div class = "flex-form-row">
                         		<h4>Title</h4>
@@ -230,27 +252,27 @@
 <%
 		if (!(planTripBean.checkDay())){
 					
-			suggestions = PlanTripController.getInstance().getNearbyPlaces(planTripBean.getDayLocation(), tripBean.getCategory1());
+			suggestions = controller.getNearbyPlaces(planTripBean.getTripBean().getDays().get(planTripBean.getPlanningDay()).getLocationCity(),
+															tripBean.getCategory1());
 			for (int i = 0; i < suggestions.size(); i++){
 %>
 				
 				<!--  INSERIRE LAYOUT SUGGESTION QUI -->
-				
-		        <div class = "suggestion-card">
-		        <form>
-		            <div class="ic-container">
-		                <img class="suggestion-icon" src=<%= suggestions.get(i).getIcCategoryRef() %> alt=""> 
-		            </div>
-		            <div class="suggestion-info">
-		                <p><%= suggestions.get(i).getName() %></p>
-		                <p><%= suggestions.get(i).getAddress() %></p>
-		                <p><%= suggestions.get(i).getOpeningHours() %></p>
-		            </div>
-		            <div class="center suggestion-btn">
-		            	<button type="submit" name="btn-lookup-place" value=<%= i%> ></button>
-		           	</div>
-		       </form>
-		       </div>
+		       		      
+<%
+				request.setAttribute("ic_src" , suggestions.get(i).getIcCategoryRef());
+				request.setAttribute("placeName" , suggestions.get(i).getName());
+				request.setAttribute("placeAddress" , suggestions.get(i).getAddress());
+				request.setAttribute("placeOH" , suggestions.get(i).getOpeningHours());
+				request.setAttribute("suggestion_id" , i);
+%>			
+				 <form>
+				 
+					<%@ include file="html/suggestionCard.html" %>
+	       
+		         </form>
+
+
 <% 			
 			}
 %>		  		  

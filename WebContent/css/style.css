@@ -236,3 +236,11 @@ label.star:before {
 .separate {
     margin: 2%;
 }
+
+.custom-card {
+	flex-direction: column;
+	margin: 1%;
+	padding: 2%;
+	border: 2px solid lightgrey;
+  	border-radius: 5px;
+}

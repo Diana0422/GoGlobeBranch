@@ -5,7 +5,7 @@ import java.util.List;
 import logic.model.UserStats;
 import logic.model.interfaces.Observer;
 import logic.model.interfaces.Subject;
-import logic.view.ProfileGraphic;
+import logic.view.control.ProfileGraphic;
 
 public class UserBean implements Observer {
 	private String email;

@@ -14,6 +14,7 @@
 <%@page import="logic.control.FlightController"%>
 <%@page import="logic.persistence.exceptions.DatabaseException"%>
 <%@page import="logic.model.exceptions.UnloggedException"%>
+<%@page import="logic.model.exceptions.DuplicateException"%>
 
 
 <!DOCTYPE html>
@@ -56,15 +57,18 @@
     		try {
     			if (request.getParameter("jointrip") != null ){
      				JoinTripController controller = new JoinTripController();
-     				controller.sendRequest(joinTripBean.getTrip().getTitle(), sessionBean.getSessionEmail());
+     				if (controller.sendRequest(joinTripBean.getTrip().getTitle(), sessionBean.getSessionEmail())) {
+     					request.setAttribute("message", "Request to join sent to the organizer.");
+     				} else {
+     					request.setAttribute("message", "You cannot join this trip, please choose another trip.");
+     				}
     			}
-			} catch (UnloggedException e) {
+			} catch (UnloggedException | DuplicateException e) {
  				System.out.println(e.getMessage());
- 				%>
- 				<h6 style="color: red"><%= e.getMessage() %> Please log in to join this trip.</h6>
- 				<%
+				request.setAttribute("message", e.getMessage());
 			}
     		%>
+    		<h6 style="color: red">${message}</h6>
     	</div>
     	
     		<ul class="nav nav-tabs">
@@ -105,14 +109,16 @@
  			request.setAttribute("retDate", joinTripBean.getTrip().getReturnDate());
  			
  			try {
- 				request.setAttribute("flightOri", FlightController.getInstance().retrieveFlightOrigin(joinTripBean.getTrip()));
- 				request.setAttribute("flightArr", FlightController.getInstance().retrieveFlightDestination(joinTripBean.getTrip()));
- 				request.setAttribute("carrier", FlightController.getInstance().retrieveFlightCarrier(joinTripBean.getTrip()));
- 				int ticket = FlightController.getInstance().retrieveFlightPrice(joinTripBean.getTrip());
+ 				FlightController flightCtrl = new FlightController();
+ 				flightCtrl.loadFlightInfo(joinTripBean.getTrip());
+ 				request.setAttribute("flightOri", joinTripBean.getTrip().getFlight().getOriginAirport());
+ 				request.setAttribute("flightArr", joinTripBean.getTrip().getFlight().getDestAirport());
+ 				request.setAttribute("carrier", joinTripBean.getTrip().getFlight().getCarrier());
+ 				int ticket = joinTripBean.getTrip().getFlight().getPrice();
  				if (ticket == 0) {
  					request.setAttribute("ticket", "N/D");
  				} else {
- 					request.setAttribute("ticket", FlightController.getInstance().retrieveFlightPrice(joinTripBean.getTrip()));
+ 					request.setAttribute("ticket", ticket);
  				}
  			} catch (DatabaseException e) {
  				request.setAttribute("errType", e.getMessage());

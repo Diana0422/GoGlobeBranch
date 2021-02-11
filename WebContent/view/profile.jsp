@@ -1,24 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page autoFlush="true" buffer="1094kb"%>
     
 <jsp:useBean id="profileBean" scope="session" class="logic.bean.ProfileBean"/>
-<jsp:useBean id="userBean" scope="session" class="logic.bean.UserBean"/>
+<jsp:useBean id="userBean" scope="request" class="logic.bean.UserBean"/>
 <jsp:useBean id="sessionBean" scope="session" class="logic.bean.SessionBean"/>
+<jsp:useBean id="joinTripBean" scope="session" class="logic.bean.JoinTripBean"/>
 
 <%@page import="logic.bean.ReviewBean"%>
+<%@page import="logic.bean.TripBean"%>
 <%@page import="logic.control.ReviewUserController"%>
 <%@page import="logic.control.ProfileController"%>
 <%@page import="logic.persistence.exceptions.DatabaseException"%>
 <%@page import="logic.model.exceptions.UnloggedException"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
+<%@page import="logic.bean.DayBean"%>
 <jsp:setProperty name="profileBean" property="comment"/>
 <jsp:setProperty name="profileBean" property="title"/>
 
-<%
+
+<% 
+	ProfileController controller = new ProfileController();
+	ReviewUserController reviewCtrl = new ReviewUserController();
+
 	userBean = profileBean.getUser();
 	if (userBean == null) {
-		userBean = ProfileController.getInstance().getProfileUser(sessionBean.getSessionEmail());
+		userBean = controller.getProfileUser(sessionBean.getSessionEmail());
+	}
+	
+	List<TripBean> myTripBeans = null;
+	List<TripBean> upcomingTripBeans = null;
+	List<TripBean> previousTripBeans = null;
+	
+	upcomingTripBeans = controller.getUpcomingTrips(userBean.getEmail());
+	previousTripBeans = controller.getRecentTrips(userBean.getEmail());
+	myTripBeans = controller.getMyTrips(userBean.getEmail());
+	
+	if (request.getParameter("prevBtn") != null){
+		System.out.println("qualcosa");
+		int idx = Integer.parseInt(request.getParameter("prevBtn"));
+			joinTripBean.setTrip(previousTripBeans.get(idx));
+%>
+		<jsp:forward page="tripInfo.jsp" />
+<% 
+		
+	}
+
+	
+	if (request.getParameter("upcomBtn") != null){
+		System.out.println("qualcosa");
+
+		int idx = Integer.parseInt(request.getParameter("upcomBtn"));
+		joinTripBean.setTrip(upcomingTripBeans.get(idx));
+%>
+		<jsp:forward page="tripInfo.jsp" />
+<% 	
+	}
+	
+	if (request.getParameter("myinfoBtn") != null){
+		System.out.println("qualcosa");
+
+		int idx = Integer.parseInt(request.getParameter("myinfoBtn"));
+		joinTripBean.setTrip(myTripBeans.get(idx));
+%>
+		<jsp:forward page="tripInfo.jsp" />
+<% 	
+	}
+	
+	if (request.getParameter("save-bio") != null){
+		System.out.println(userBean.getBio());
+		controller.updateUserBio(sessionBean.getSessionEmail(), userBean.getBio());
 	}
 %>
 
@@ -77,7 +129,7 @@
                     <div class="travel-attitude profile-element">
                         <h4>Traveler Attitude</h4>
                         <%
-                        Map<String, Integer> attitude = ProfileController.getInstance().getPercentageAttitude(userBean.getEmail());
+                        Map<String, Integer> attitude = controller.getPercentageAttitude(userBean.getEmail());
                         System.out.println(attitude);
                         %>
                         <ul>
@@ -172,9 +224,29 @@
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active" role="tabpanel" id="bio">
-                        <!-- biography -->
-                        <p class="bio-text"><%= userBean.getBio() %></p>
+					<div class="tab-pane active" role="tabpanel" id="bio">
+                        <%
+							String profileBio = userBean.getBio();
+                            		
+                            if (profileBio == null || profileBio.equals("")){
+                            	profileBio = "User has no bio";
+                            }
+                            
+							if (!sessionBean.getSessionEmail().equals(userBean.getEmail())){
+%>
+								<h1><%= profileBio%></h1>
+<% 
+							}else{
+															
+								request.setAttribute("bio" , profileBio);
+								
+%>								
+								<form  method="post" action="profile.jsp" >
+									<%@ include file="html/profileBioTab.html" %>	
+								</form>							
+<% 							
+							}
+%>
                     </div>
 
                     <div class="tab-pane" role="tabpanel" id="reviews">
@@ -233,8 +305,6 @@
                                 <%
                                 	if (request.getParameter("reviewbtn") != null) {
                                 		profileBean.setVote(Double.parseDouble(request.getParameter("star")));
-                                		// Date
-                                		
                                 		try {
                                     		ReviewBean review = new ReviewBean();
                                     		review.setTitle(profileBean.getTitle());
@@ -243,7 +313,7 @@
                                     		review.setReviewerName(sessionBean.getSessionName());
                                     		review.setReviewerSurname(sessionBean.getSessionSurname());
                                     		review.setVote(profileBean.getVote());                  
-                                    		ReviewUserController.getInstance().postReview(request.getParameter("type-radio"), profileBean.getVote(), profileBean.getComment(), profileBean.getTitle(), sessionBean.getSessionEmail(), userBean.getEmail(), userBean);
+                                    		reviewCtrl.postReview(request.getParameter("type-radio"), profileBean.getVote(), profileBean.getComment(), profileBean.getTitle(), sessionBean.getSessionEmail(), userBean.getEmail(), userBean);
                                     		userBean.getReviews().add(review);
                                     		//System.out.println("web view: org rating:"+profileBean.getUser().getStatsBean().getOrgRating()+" trav rating:"+profileBean.getUser().getStatsBean().getTravRating());
                                     		response.setIntHeader("Refresh",0);
@@ -273,7 +343,7 @@
                             	for (ReviewBean bean: userBean.getReviews()) {
                             		%>
                             		<!--SINGLE REVIEW CARD (repeatable)-->
-                            		<div class="review">
+                            		<div class="review card">
                                 		<div class="review-header">
 	                                		<h4 id="user"><%= bean.getReviewerName()+" "+bean.getReviewerSurname() %></h4>
 	                               			<div class="stars">
@@ -312,29 +382,98 @@
                             %>
 
                         </div>
-                        
-                        <% profileBean.setUser(null); %>
 
                     </div>
+                    
+                    <%
+					upcomingTripBeans = controller.getUpcomingTrips(userBean.getEmail());
+					previousTripBeans = controller.getRecentTrips(userBean.getEmail());
+                    %>
 
                     <div class="tab-pane" role="tabpanel" id="prev-trips">
 
                         <!-- previous trips list-->
-                        <div class="previous-trips scrollable">
+                        <div class="trips scrollable">
+                        	<form method="POST" action="profile.jsp" >
+							<%                     	
+							for (int i = 0; i < previousTripBeans.size(); i++){
+								request.setAttribute("tripName", previousTripBeans.get(i).getTitle());
+								request.setAttribute("depDate",  previousTripBeans.get(i).getDepartureDate());
+								request.setAttribute("retDate",  previousTripBeans.get(i).getReturnDate());
+								request.setAttribute("category1",  previousTripBeans.get(i).getCategory1());
+								request.setAttribute("category2", previousTripBeans.get(i).getCategory2());
+								String locations="";
+								for (DayBean day: previousTripBeans.get(i).getDays()) {
+									locations = locations.concat(day.getLocationCity()+" • ");
+								}
+								request.setAttribute("locationList", locations);
+								request.setAttribute("moreinfo", "prevBtn");
+								request.setAttribute("btnVal", i );
+							%>                      				
+                        		<%@include file="html/hzTripCard.html" %>
+							<%
+                        	}
+							%>                       	                      	
+                        	</form>
+                        
                         </div>
                     </div>
 
                     <div class="tab-pane" role="tabpanel" id="up-trips">
 
                         <!-- upcoming trips list-->
-                        <div class="upcoming-trips scrollable">
-                        </div>
+                        <div class="trips scrollable">
+                        	<form method="POST" action="profile.jsp" >
+ 							<%                     	
+                       		for (int i = 0; i < upcomingTripBeans.size(); i++){
+                       			request.setAttribute("tripName", upcomingTripBeans.get(i).getTitle());
+                       			request.setAttribute("depDate",  upcomingTripBeans.get(i).getDepartureDate());
+                       			request.setAttribute("retDate",  upcomingTripBeans.get(i).getReturnDate());
+                       			request.setAttribute("category1",  upcomingTripBeans.get(i).getCategory1());
+                       			request.setAttribute("category2", upcomingTripBeans.get(i).getCategory2());
+								String locations="";
+								for (DayBean day: upcomingTripBeans.get(i).getDays()) {
+									locations = locations.concat(day.getLocationCity()+"•");
+								}
+								request.setAttribute("locationList", locations);
+								request.setAttribute("moreinfo", "upcomBtn");
 
-                        <div class="filler center"><h4>No upcoming trips.</h4></div>
+                       			request.setAttribute("btnVal", i );
+							%>                      				
+                       			<%@include file="html/hzTripCard.html" %>
+							<%
+                        	}
+ 							%>                       	                      	
+                        	</form>
+                        
+                        </div>
                     </div>
                     
                     <div class="tab-pane" role="tabpanel" id="my-trips">
-                    	<div class="filler center"><h4>No trips planned.</h4></div>
+                  		<div class="trips scrollable">
+                        
+                       	    <form method="POST" action="profile.jsp" >
+ 							<%                     	
+                       		for (int i = 0; i < myTripBeans.size(); i++){
+                       			request.setAttribute("tripName",  myTripBeans.get(i).getTitle());
+                       			request.setAttribute("depDate",  myTripBeans.get(i).getDepartureDate());
+                       			request.setAttribute("retDate",  myTripBeans.get(i).getReturnDate());
+                       			request.setAttribute("category1",  myTripBeans.get(i).getCategory1());
+                       			request.setAttribute("category2",  myTripBeans.get(i).getCategory2());
+								String locations="";
+								for (DayBean day: myTripBeans.get(i).getDays()) {
+									locations = locations.concat(day.getLocationCity()+"•");
+								}
+								request.setAttribute("locationList", locations);
+								request.setAttribute("moreinfo", "myinfoBtn");
+                       			request.setAttribute("btnVal", i );
+							%>                      				
+                       			<%@include file="html/hzTripCard.html" %>
+							<%
+                        	}
+ 							%>                       	                      	
+                        	</form>
+                        </div>    
                     </div>
                 </div>
             </div>

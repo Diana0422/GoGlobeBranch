@@ -3,6 +3,7 @@ package logic.model.adapters;
 import java.util.Currency;
 import java.util.Locale;
 
+import logic.control.FormatManager;
 import logic.model.apis.SkyscannerAPI;
 import logic.model.exceptions.APIException;
 import logic.model.interfaces.CityGeolocation;
@@ -18,7 +19,7 @@ public class CityAdapter implements CityGeolocation {
 	@Override
 	public String getCountryName(String city) throws APIException {
 		try {
-			return api.getCountry(city, formatLocale(Locale.getDefault()), formatCountry(Locale.getDefault()), Currency.getInstance(Locale.getDefault()).getCurrencyCode());
+			return api.getCountry(FormatManager.prepareToURL(city), formatLocale(Locale.getDefault()), formatCountry(Locale.getDefault()), Currency.getInstance(Locale.getDefault()).getCurrencyCode());
 		} catch (APIException e) {
 			throw new APIException(e.getCause(), "Cannot get country name.");
 		}

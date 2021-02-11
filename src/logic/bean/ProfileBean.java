@@ -1,11 +1,14 @@
 package logic.bean;
 
+import java.util.Calendar;
+
+import logic.control.FormatManager;
+
 public class ProfileBean {
 	
 	private UserBean user;
 	
 	private String comment;
-	private String date;
 	private String title;
 	private double vote;
 	
@@ -30,11 +33,7 @@ public class ProfileBean {
 	}
 
 	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
+		return FormatManager.formatDate(Calendar.getInstance().getTime());
 	}
 
 	public String getTitle() {

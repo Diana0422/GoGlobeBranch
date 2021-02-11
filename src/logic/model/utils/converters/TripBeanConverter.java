@@ -34,11 +34,11 @@ public class TripBeanConverter implements BeanConverter<Trip,TripBean> {
 			bean.setDescription(o.getDescription());
 			bean.setTitle(o.getTitle());
 			bean.setPrice(o.getPrice());
-			bean.setTicketPrice(o.getTicketPrice());
 			bean.setCategory1(o.getCategory1().toString());
 			bean.setCategory2(o.getCategory2().toString());
 			bean.setShared(o.isShared());
 			bean.setAvailability(o.getAvailableSpots());
+			bean.setCountry(o.getCountry());
 			bean.setMinAge(Integer.toString(o.getMinAge()));
 			bean.setMaxAge(Integer.toString(o.getMaxAge()));
 			bean.setMaxParticipants(Integer.toString(o.getMaxParticipants()));

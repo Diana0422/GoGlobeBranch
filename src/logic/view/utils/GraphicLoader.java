@@ -1,20 +1,17 @@
 package logic.view.utils;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import logic.util.Session;
-import logic.view.GUIType;
-import logic.view.UpperNavbarGraphic;
+import logic.view.control.AlertGraphic;
+import logic.view.control.UpperNavbarGraphic;
 
 public class GraphicLoader {
 	
-	private static final String ITEMPATH = "../";
+	private static final String ITEMPATH = "../res/fxml/";
+	private static final String DYNITEMPATH = "../res/fxml/dynamic/";
 
 	private GraphicLoader() {/* empty constructor */}
 
@@ -34,9 +31,7 @@ public class GraphicLoader {
 				return new Scene(pane);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-			showAlert(AlertType.ERROR, "view not found.");
-			Logger.getGlobal().log(Level.SEVERE, "view not found.");
+			showAlert(e.getMessage(), e.toString());
 			return new Scene(new BorderPane());
 		}
 	}
@@ -55,9 +50,7 @@ public class GraphicLoader {
 				return new Scene(pane);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-			showAlert(AlertType.ERROR, "view not found.");
-			Logger.getGlobal().log(Level.SEVERE, "view not found.");
+			showAlert(e.getMessage(), e.toString());
 			return new Scene(new BorderPane());
 		}
 	}
@@ -112,26 +105,28 @@ public class GraphicLoader {
 		switch(item) {
 		case NAVBAR:
 			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "UpperNavbar.fxml"));
+		case CARD_SHARED:
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "TripCard.fxml"));
 		case CARD:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "TripCard.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "TripCardNotShared.fxml"));
 		case ACTIVITY:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "ActivityCard.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "ActivityCard.fxml"));
 		case USER:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "UserItem.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "UserItem.fxml"));
 		case REVIEW:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "ReviewItem.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "ReviewItem.fxml"));
 		case REQUEST:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "RequestItem.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "RequestItem.fxml"));
 		case SUGGESTION:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "PlaceSuggestion.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "PlaceSuggestion.fxml"));
 		default:
-			return new FXMLLoader(GraphicLoader.class.getResource(ITEMPATH + "UpperNavbar.fxml"));
+			return new FXMLLoader(GraphicLoader.class.getResource(DYNITEMPATH + "UpperNavbar.fxml"));
 		}
 	}
 
-	public static void showAlert(AlertType error, String message) {
-		// TODO Auto-generated method stub
-		
+	public static void showAlert(String error, String message) {
+		AlertGraphic alert = new AlertGraphic();
+		alert.display(error, message);
 	}
 
 }

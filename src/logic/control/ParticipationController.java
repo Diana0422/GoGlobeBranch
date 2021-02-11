@@ -12,21 +12,10 @@ import logic.model.utils.GeolocationPicker;
 
 public class ParticipationController {
 	
-	private static ParticipationController instance = null;
+	private Date today;
 	
-	private static Date today;
-	
-	private ParticipationController() {
-		//empty constructor
-	}
-	
-	public static ParticipationController getInstance() {
-		if (instance == null) {
-			instance = new ParticipationController();
-			today = new Date();
-		}
-		
-		return instance;
+	public ParticipationController() {
+		today = new Date();
 	}
 	
 	public boolean checkParticipation(Trip trip) {

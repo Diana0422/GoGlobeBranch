@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import logic.control.FormatManager;
 import logic.model.Location;
 import logic.model.PlaceBean;
 import logic.model.apis.HereImplementation;
@@ -72,7 +74,7 @@ public class HereAPIAdapter implements LocationFinder{
 	public Location getLocationInfo(String locationName) throws APIException {
 		JSONObject json;
 		try {
-			json = hereAPI.getLocationInfo(locationName);
+			json = hereAPI.getLocationInfo(FormatManager.prepareToURL(locationName), FormatManager.formatLocale());
 			JSONArray items = json.getJSONArray("items");           
 	     	String countryName = items.getJSONObject(0).getJSONObject("address").getString("countryName");
 	     	String cityName = items.getJSONObject(0).getJSONObject("address").getString("city");

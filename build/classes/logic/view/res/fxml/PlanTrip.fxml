@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;" stylesheets="@css/application.css">
+         <children>
+            <AnchorPane layoutX="212.0" layoutY="-2.0" prefHeight="663.0" prefWidth="1125.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text layoutX="36.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtDayNumber" layoutX="90.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Day">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtLocationForm" layoutX="33.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location: ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="tfLocation" layoutX="152.0" layoutY="109.0" promptText="Insert Location" />
+                  <Button id="btn" fx:id="btnSaveLocation" layoutX="326.0" layoutY="100.0" mnemonicParsing="false" onAction="#saveLocation" prefHeight="39.0" prefWidth="140.0" text="Save Location">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="txtLocation" layoutX="194.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location: ">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane id="form" fx:id="apActivityForm" layoutX="16.0" layoutY="148.0" prefHeight="260.0" prefWidth="537.0" style="-fx-border-color: gray; -fx-border-radius: 20px;" stylesheets="@css/application.css">
+                     <children>
+                        <Text layoutX="23.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="20.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="25.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tfActivityTitle" layoutX="71.0" layoutY="14.0" AnchorPane.leftAnchor="71.0" />
+                        <TextField fx:id="tfActivityTime" layoutX="72.0" layoutY="48.0" AnchorPane.leftAnchor="72.0" />
+                        <TextArea fx:id="taActivityDescription" layoutX="22.0" layoutY="118.0" prefHeight="70.0" prefWidth="476.0" />
+                        <Button id="btn" fx:id="btnAddActivity" layoutX="22.0" layoutY="198.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="41.0" prefWidth="476.0" text="Add activity">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Text layoutX="249.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="tfActivityCost" layoutX="298.0" layoutY="47.0" prefHeight="27.0" prefWidth="164.0" />
+                     </children>
+                  </AnchorPane>
+                  <ScrollPane fx:id="spActivities" layoutY="416.0" prefHeight="247.0" prefWidth="568.0" style="-fx-background-color: white;">
+                     <content>
+                        <VBox fx:id="vbActivities" spacing="20.0" style="-fx-background-color: white;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fx:id="spSuggestions" layoutX="581.0" layoutY="127.0" maxHeight="520.0" maxWidth="514.0" prefHeight="513.0" prefWidth="496.0">
+                     <content>
+                        <VBox fx:id="vbSuggestions" spacing="10.0" style="-fx-background-color: white;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="lblErrorMsg" layoutX="34.0" layoutY="96.0" textFill="RED">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNoSugg" layoutX="581.0" layoutY="100.0" prefHeight="17.0" prefWidth="496.0" textFill="#c60e0e">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutX="37.0" layoutY="7.0" prefHeight="49.0" prefWidth="1043.0">
+                     <children>
+                        <Text fx:id="txtTripTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Trip's Name" wrappingWidth="317.0">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtCountry" fill="#949494" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="317.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="5.0" layoutY="164.0" prefHeight="504.0" prefWidth="211.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="164.0">
+               <children>
+                  <ScrollPane prefHeight="500.0" prefWidth="211.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0">
+                     <content>
+                        <VBox fx:id="vbDays" prefHeight="487.0" prefWidth="208.0" spacing="10.0" style="-fx-background-color: white;">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <Button id="btn" fx:id="btnSaveTrip" layoutX="8.0" layoutY="15.0" mnemonicParsing="false" onAction="#onSaveTripClick" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/application.css" text="Save Trip">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button id="btn" fx:id="btnShareTrip" layoutX="7.0" layoutY="96.0" mnemonicParsing="false" onAction="#onShareTripClick" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/application.css" text="Share Trip">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Separator layoutX="5.0" layoutY="79.0" prefHeight="2.0" prefWidth="67.0" />
+            <Separator layoutX="139.0" layoutY="80.0" prefHeight="2.0" prefWidth="67.0" />
+            <Text layoutX="93.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

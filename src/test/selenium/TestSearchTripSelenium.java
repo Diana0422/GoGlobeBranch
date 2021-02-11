@@ -43,8 +43,8 @@ public class TestSearchTripSelenium {
 		WebElement titleResult = driver.findElement(By.xpath("//*[@id=\"title\"]"));
 		String title = titleResult.getText();
 		Logger.getGlobal().log(Level.INFO, title);
-		assertEquals(TRIP_TITLE, title);
 		driver.close();
+		assertEquals(TRIP_TITLE, title);
 	}
 	
 	@Test
@@ -62,9 +62,9 @@ public class TestSearchTripSelenium {
 		Logger.getGlobal().log(Level.INFO, priceStr);
 		try {
 			int expected = TripDao.getInstance().getTripByTitle(TRIP_TITLE).getPrice();
-			String expectedStr = expected+"€";
-			assertEquals(expectedStr, priceStr);
+			String expectedStr = expected+"â‚¬";
 			driver.close();
+			assertEquals(expectedStr, priceStr);
 		} catch (DBConnectionException | SQLException e) {
 			Logger.getGlobal().log(Level.SEVERE, ERROR_MSG);
 		}
@@ -87,8 +87,8 @@ public class TestSearchTripSelenium {
 			int expectedMin = TripDao.getInstance().getTripByTitle(TRIP_TITLE).getMinAge();
 			int expectedMax = TripDao.getInstance().getTripByTitle(TRIP_TITLE).getMaxAge(); 
 			String expectedStr = "age "+expectedMin+" - "+expectedMax;
-			assertEquals(expectedStr, ageStr);
 			driver.close();
+			assertEquals(expectedStr, ageStr);
 		} catch (DBConnectionException | SQLException e) {
 			Logger.getGlobal().log(Level.SEVERE, ERROR_MSG);
 		}
@@ -109,8 +109,8 @@ public class TestSearchTripSelenium {
 		Logger.getGlobal().log(Level.INFO, catStr);
 		try {
 			String expectedCat1 = TripDao.getInstance().getTripByTitle(TRIP_TITLE).getCategory1().toString();
-			assertEquals(expectedCat1, catStr);
 			driver.close();
+			assertEquals(expectedCat1, catStr);
 		} catch (DBConnectionException | SQLException e) {
 			Logger.getGlobal().log(Level.SEVERE, ERROR_MSG);
 		}
@@ -131,8 +131,8 @@ public class TestSearchTripSelenium {
 		Logger.getGlobal().log(Level.INFO, catStr);
 		try {
 			String expectedCat2 = TripDao.getInstance().getTripByTitle(TRIP_TITLE).getCategory2().toString();
-			assertEquals(expectedCat2, catStr);
 			driver.close();
+			assertEquals(expectedCat2, catStr);
 		} catch (DBConnectionException | SQLException e) {
 			Logger.getGlobal().log(Level.SEVERE, ERROR_MSG);
 		}

@@ -28,6 +28,10 @@
 <body id="bootstrap-override">
 
 	<%@ include file="html/loggedNavbar.html" %>
+	
+	<%
+	ManageRequestController controller = new ManageRequestController();
+	%>
 
 
     <!-- tab panels -->
@@ -48,7 +52,7 @@
                 <div role="tabpanel" class="tab-pane active" id="incoming">
 
 				<%
-					List<RequestBean> requests = ManageRequestController.getInstance().getUserIncomingRequests(sessionBean.getSessionEmail());
+					List<RequestBean> requests = controller.getUserIncomingRequests(sessionBean.getSessionEmail());
 					for (RequestBean req: requests) {
 						request.setAttribute("tripTitle", req.getTripTitle());
 						request.setAttribute("senderName", req.getSenderName());
@@ -60,7 +64,7 @@
 						<%
 						
 						if (request.getParameter("viewprofile") != null) {
-                			profileBean.setUser(ManageRequestController.getInstance().getSenderBean(req));
+                			profileBean.setUser(controller.getSenderBean(req));
                 			%>
                 				<jsp:forward page="profile.jsp"/>
                 			<%
@@ -69,7 +73,7 @@
 						try {
 							if (request.getParameter("accept") != null) {
 	                			System.out.println("Accepting request.");
-	                			ManageRequestController.getInstance().acceptRequest(req);
+	                			System.out.println(controller.acceptRequest(req));
 	                			response.setIntHeader("Refresh",0);
 	                		}
 						} catch (DatabaseException e) {
@@ -83,7 +87,7 @@
 						try {
                        		if (request.getParameter("decline") != null) {
                     			System.out.println("Declining request.");
-                    			ManageRequestController.getInstance().declineRequest(req);
+                    			controller.declineRequest(req);
                     			response.setIntHeader("Refresh",0);
                     		}
 						} catch (DatabaseException e) {
@@ -97,7 +101,7 @@
                
                 <div role="tabpanel" class="tab-pane" id="sent">
                 	<%
-					List<RequestBean> sentRequests = ManageRequestController.getInstance().getUserSentRequests(sessionBean.getSessionEmail());
+					List<RequestBean> sentRequests = controller.getUserSentRequests(sessionBean.getSessionEmail());
                 	if (sentRequests != null) {
                 		for (RequestBean req: sentRequests) {
     						request.setAttribute("tripTitle", req.getTripTitle());
@@ -108,7 +112,7 @@
     						<%
                 			
     						if (request.getParameter("viewprofile") != null) {
-                    			profileBean.setUser(ManageRequestController.getInstance().getSenderBean(req));
+                    			profileBean.setUser(controller.getSenderBean(req));
                     			%>
                     				<jsp:forward page="profile.jsp"/>
                     			<%

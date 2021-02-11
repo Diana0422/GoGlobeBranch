@@ -16,7 +16,7 @@ import logic.persistence.exceptions.DBConnectionException;
 
 public class TripDao {
 	
-	public static final String STORE_TRIP = "call register_trip(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static final String STORE_TRIP = "call register_trip(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	public static final String GET_TRIP = "call fetch_trip(?)";
 	public static final String GET_TRIPS = "call fetch_trips()";
 	public static final String GET_SHARED_TRIPS = "call fetch_shared_trips()";
@@ -33,6 +33,7 @@ public class TripDao {
 	public static final String MIN_AGE_COLUMN = "min_age";
 	public static final String MAX_PART_COLUMN = "max_participants";
 	public static final String DESC_COLUMN = "description";
+	public static final String COUNTRY_COLUMN = "country";
 	
 	
 	private static TripDao instance = null;
@@ -60,6 +61,7 @@ public class TripDao {
 			stmt.setInt(9, t.getMinAge());
 			stmt.setInt(10, t.getMaxAge());
 			stmt.setInt(11, t.getMaxParticipants());
+			stmt.setString(12, t.getCountry());
 			stmt.execute();
 			return true;
 		} catch (SQLException e) {
@@ -87,6 +89,7 @@ public class TripDao {
 				int tripMinAge = rs.getInt(MIN_AGE_COLUMN);
 				int tripMaxAge = rs.getInt(MAX_AGE_COLUMN);
 				int maxPart = rs.getInt(MAX_PART_COLUMN);
+				String country = rs.getString(COUNTRY_COLUMN);
 				trip.setTitle(tripTitle);
 				trip.setPrice(price);
 				trip.setCategory1(cat1);
@@ -97,6 +100,8 @@ public class TripDao {
 				trip.setMaxAge(tripMaxAge);
 				trip.setMaxParticipants(maxPart);
 				trip.setMinAge(tripMinAge);
+				trip.setCountry(country);
+				trip.setDays(DayDao.getInstance().getTripDays(tripTitle));
 				trip.setOrganizer(UserDaoDB.getInstance().get(organizer));
 				trip.setParticipants(UserDaoDB.getInstance().getTripParticipants(tripTitle));
 			}
@@ -128,6 +133,7 @@ public class TripDao {
 					TripCategory categ1 = TripCategory.valueOf(rs.getString(CATEGORY1_COLUMN));
 					TripCategory categ2 = TripCategory.valueOf(rs.getString(CATEGORY2_COLUMN));
 					int price = rs.getInt(PRICE_COLUMN);
+					String country = rs.getString(COUNTRY_COLUMN);
 					
 					// Instantiate new trip
 					Trip t = new Trip();
@@ -138,6 +144,10 @@ public class TripDao {
 					t.setReturnDate(ret);
 					t.setShared(false);
 					t.setPrice(price);
+					t.setCountry(country);
+					t.setDays(DayDao.getInstance().getTripDays(title));
+					t.setOrganizer(UserDaoDB.getInstance().getTripOrganizer(title));
+					t.setParticipants(UserDaoDB.getInstance().getTripParticipants(title));
 					trips.add(t);
 				} while(rs.next());
 			}
@@ -175,6 +185,7 @@ public class TripDao {
 					int ageMin = rs.getInt(MIN_AGE_COLUMN);
 					int ageMax = rs.getInt(MAX_AGE_COLUMN);
 					int maxPart = rs.getInt(MAX_PART_COLUMN);
+					String country = rs.getString(COUNTRY_COLUMN);
 					
 					// Instantiate new trip
 					Trip t = new Trip();
@@ -190,6 +201,7 @@ public class TripDao {
 					t.setMinAge(ageMin);
 					t.setDescription(desc);
 					t.setShared(true);
+					t.setCountry(country);
 					t.setDays(DayDao.getInstance().getTripDays(title));
 					t.setParticipants(UserDaoDB.getInstance().getTripParticipants(title));
 					trips.add(t);
@@ -240,6 +252,7 @@ public class TripDao {
 					int minAge = rs.getInt(MIN_AGE_COLUMN);
 					int maxAge = rs.getInt(MAX_AGE_COLUMN);
 					int maxParticipants = rs.getInt(MAX_PART_COLUMN);
+					String country = rs.getString(COUNTRY_COLUMN);
 					
 					// Instantiate new trip
 					Trip t = new Trip();
@@ -255,6 +268,7 @@ public class TripDao {
 					t.setMinAge(minAge);
 					t.setDescription(desc);
 					t.setShared(true);
+					t.setCountry(country);
 					t.setDays(DayDao.getInstance().getTripDays(title));
 					t.setParticipants(UserDaoDB.getInstance().getTripParticipants(title));
 					

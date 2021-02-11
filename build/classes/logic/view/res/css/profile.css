@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#profile-pane{
+	-fx-background-color: white;
+	background-color: white;
+}
+
+#ivFunAttitude {
+	-fx-image: uri("/logic/view/res/images/icons8-cocktail-50.png");
+}
+
+#ivAdventureAttitude {
+	-fx-image: uri("/logic/view/res/images/icons8-mountain-50.png");
+}
+
+#ivCultureAttitude {
+	-fx-image: uri("/logic/view/res/images/icons8-greek-pillar-capital-50.png");
+}
+
+#ivRelaxAttitude {
+	-fx-image: uri("/logic/view/res/images/icons8-holiday-50.png");
+}

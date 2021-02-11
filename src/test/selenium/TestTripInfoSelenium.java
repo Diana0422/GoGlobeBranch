@@ -46,7 +46,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip info
-		WebElement titleResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[1]/h1"));
+		WebElement titleResult = driver.findElement(By.xpath("//*[@id=\"bootstrap-override\"]/div/div[1]/h1"));
 		String resTitle = titleResult.getText();
 	
 		try {
@@ -73,7 +73,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip organizer name
-		WebElement orgNameResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/form/div/h4[1]"));
+		WebElement orgNameResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/form/div/h4[1]"));
 		String resOrganizerName = orgNameResult.getText();
 		
 		try {
@@ -100,7 +100,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip description
-		WebElement descResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/div[1]/p"));
+		WebElement descResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/div[2]/p"));
 		String resDescription = descResult.getText();
 		
 		try {
@@ -127,7 +127,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip organizer name
-		WebElement orgSurnameResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/form/div/h4[2]"));
+		WebElement orgSurnameResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/form/div/h4[2]"));
 		String resOrganizerSurname = orgSurnameResult.getText();
 		
 		try {
@@ -155,7 +155,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip category 1
-		WebElement cat1Result = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/ul/li[1]/h4"));
+		WebElement cat1Result = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/ul/li[1]/h4"));
 		String resCat1 = cat1Result.getText();
 		
 		try {
@@ -183,7 +183,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip category2
-		WebElement cat2Result = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/ul/li[2]/h4"));
+		WebElement cat2Result = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/ul/li[2]/h4"));
 		String resCat2 = cat2Result.getText();
 		
 		try {
@@ -210,13 +210,13 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip category2
-		WebElement priceResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[2]/div/div[2]/h4"));
+		WebElement priceResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[1]/div/div[1]/h4"));
 		String resPrice = priceResult.getText();
 		
 		try {
 			Trip trip = TripDao.getInstance().getTripByTitle(TRIP_TITLE);
-			int i = Integer.parseInt(resPrice);
-			assertEquals(trip.getPrice(), i);
+			String expected = trip.getPrice()+"€";
+			assertEquals(expected, resPrice);
 		} catch (DBConnectionException | SQLException e) {
 			Logger.getGlobal().log(Level.SEVERE, ERROR_MSG);
 		} finally {
@@ -238,7 +238,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip category2
-		WebElement departResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[3]/ul/li[1]/h4[2]"));
+		WebElement departResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[2]/div[1]/ul/li[1]/h4[2]"));
 		String resDeparture = departResult.getText();
 		
 		try {
@@ -266,7 +266,7 @@ public class TestTripInfoSelenium {
 		driver.findElement(By.xpath(INFOBTN_XPATH)).click();
 		
 		// Read trip category2
-		WebElement returnResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div[3]/ul/li[2]/h4[2]"));
+		WebElement returnResult = driver.findElement(By.xpath("//*[@id=\"general\"]/div/div/div[2]/div[1]/ul/li[2]/h4[2]"));
 		String resReturn = returnResult.getText();
 		
 		try {

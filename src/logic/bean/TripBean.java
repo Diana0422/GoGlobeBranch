@@ -1,6 +1,5 @@
 package logic.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.exceptions.TripNotCompletedException;
@@ -11,11 +10,11 @@ public class TripBean {
 	private boolean shared;
 	private String title;
 	private int price;
-	private int ticketPrice;
 	private String category1;
 	private String category2;
 	private String departureDate;
 	private String returnDate;	
+	private String country;
 	private List<DayBean> days;
 	private long tripLength;
 	private String description;
@@ -25,20 +24,8 @@ public class TripBean {
 	private UserBean organizer;
 	private List<UserBean> participants;
 	private int availability;
+	private FlightBean flight;
 	
-	
-	public void addActivity(int day, ActivityBean activity) {
-		this.getDays().get(day).getActivities().add(activity);
-	}
-	
-	//Creates dayBean instances
-	public void createDays(){
-		days = new ArrayList<>();
-		for (int i = 0; i < this.tripLength; i++){
-			DayBean day = new DayBean();
-			this.days.add(day);
-		}
-	}
 	
 	public void validateTrip() throws TripNotCompletedException{
 		for (int i = 0; i < days.size(); i++) {
@@ -176,20 +163,28 @@ public class TripBean {
 		this.participants = participants;
 	}
 
-	public int getTicketPrice() {
-		return ticketPrice;
-	}
-
-	public void setTicketPrice(int ticketPrice) {
-		this.ticketPrice = ticketPrice;
-	}
-
 	public int getAvailability() {
 		return availability;
 	}
 
 	public void setAvailability(int availability) {
 		this.availability = availability;
+	}
+
+	public FlightBean getFlight() {
+		return flight;
+	}
+
+	public void setFlight(FlightBean flight) {
+		this.flight = flight;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 	

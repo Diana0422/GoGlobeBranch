@@ -2,6 +2,7 @@ package logic.view.filterstrategies;
 
 import java.util.List;
 import logic.bean.TripBean;
+import logic.model.TripCategory;
 
 public class TripFilterManager {
 	StrategyContext context;
@@ -15,19 +16,24 @@ public class TripFilterManager {
 	}
 	
 	public void setAdventureFilter() {
-		context.setFilter(new AdventureCategoryStrategy());
+		context.setFilter(new CategoryStrategy(TripCategory.ADVENTURE));
 	}
 	
 	public void setCultureFilter() {
-		context.setFilter(new CultureCategoryStrategy());
+		context.setFilter(new CategoryStrategy(TripCategory.CULTURE));
 	}
 	
 	public void setRelaxFilter() {
-		context.setFilter(new RelaxCategoryStrategy());
+		context.setFilter(new CategoryStrategy(TripCategory.RELAX));
 	}
 	
 	public void setFunFilter() {
-		context.setFilter(new FunCategoryStrategy());
+		context.setFilter(new CategoryStrategy(TripCategory.FUN));
+	}
+	
+	public void setPriceFilter() {
+		context.setFilter(new PriceFilterStrategy());
+		
 	}
 	
 	public List<TripBean> filterTrips(List<TripBean> trips){

@@ -18,7 +18,6 @@ public class UserDaoDB {
 	private static final String STORE_USER = "call register_user(?, ?, ?, ?, ?)";
 	private static final String UPDATE_USER = "call update_user(?, ?, ?, ?)";
 	private static final String DELETE_USER = "call delete_user(?)";
-	private static final String UPDATE_USER_BIO = "call update_user_bio(? , ?)";
 	private static final String GET_ORGANIZER = "call fetch_trip_organizer(?)";
 	private static final String GET_PARTICIPANTS = "call fetch_trip_participants(?)";
 	private static final String GET_REQUEST_RECEIVER = "call fetch_request_receiver(?, ?)";
@@ -232,6 +231,7 @@ public class UserDaoDB {
 				u.setName(name);
 				u.setSurname(surname);
 				u.setBirthday(birth);
+				u.setIncRequests(RequestDao.getInstance().getRequestsByReceiver(email));
 				u.setStats(UserStatsDao.getInstance().getUserStats(email));
 				u.copyAttitude(UserStatsDao.getInstance().getUserAttitude(email));
 				u.setBio(bio);
@@ -241,18 +241,4 @@ public class UserDaoDB {
 			throw new SQLException("Cannot get receiver of the request by: "+userEmail+" for trip: "+tripTitle+" from database.", e);
 		}
 	}
-	
-
-	public boolean updateUserBio(String userEmail, String userBio) throws DBConnectionException, SQLException {
-		try (Connection conn = ConnectionManager.getInstance().getConnection();
-			CallableStatement stmt = conn.prepareCall(UPDATE_USER_BIO)) {
-			stmt.setString(1, userEmail);
-			stmt.setString(2, userBio);
-			stmt.execute();
-			return true;				
-	}catch (SQLException e) {
-		throw new SQLException("Cannot upload bio of user: " + userEmail, e);
-	}
-}
-
 }

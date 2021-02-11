@@ -3,6 +3,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.model.TripCategory;
@@ -14,10 +15,10 @@ public class FormatManager {
 	/* Controller METHODS */
 	
 	public static TripCategory parseTripCategory(String category) {
-		if (category.equals("Fun")) return TripCategory.FUN;	
-		if (category.equals("Culture")) return TripCategory.CULTURE;	
-		if (category.equals("Relax")) return TripCategory.RELAX;
-		if (category.equals("Adventure")) return TripCategory.ADVENTURE;
+		if (category.equalsIgnoreCase("Fun")) return TripCategory.FUN;	
+		if (category.equalsIgnoreCase("Culture")) return TripCategory.CULTURE;	
+		if (category.equalsIgnoreCase("Relax")) return TripCategory.RELAX;
+		if (category.equalsIgnoreCase("Adventure")) return TripCategory.ADVENTURE;
 			
 		return TripCategory.NONE;
 	}
@@ -43,4 +44,12 @@ public class FormatManager {
 		return formatter.format(date);
 	}
 	
+	public static String prepareToURL(String s) {
+		return s.replace(" ", "+");
+	}
+	
+	public static String formatLocale() {
+		Locale userLocale = Locale.getDefault();
+		return userLocale.getLanguage()+"-"+userLocale.getCountry();
+	}
 }

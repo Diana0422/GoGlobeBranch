@@ -1,35 +1,18 @@
 package logic.control;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import logic.bean.TripBean;
 import logic.bean.UserBean;
-import logic.persistence.dao.TripDao;
-import logic.persistence.dao.UserDaoDB;
-import logic.persistence.dao.UserStatsDao;
-import logic.persistence.exceptions.DBConnectionException;
 import logic.persistence.exceptions.DatabaseException;
+import logic.util.Cookie;
+import logic.util.Session;
 import logic.model.Trip;
 import logic.model.User;
 import logic.model.utils.converters.TripBeanConverter;
 import logic.model.utils.converters.UserBeanConverter;
 
 public class GainPointsController {
-	
-	private static GainPointsController instance = null;
-	
-	private GainPointsController() {
-		//empty constructor for singleton
-	}
-	
-	public static GainPointsController getInstance() {
-		if (instance == null) {
-			instance = new GainPointsController();
-		}
-		
-		return instance;
-	}
 	
 	
 	public TripBean getTripOfTheDay(String userEmail) throws DatabaseException {
@@ -38,8 +21,8 @@ public class GainPointsController {
 		TripBeanConverter tripConverter = new TripBeanConverter();
 		UserBean logged;
 		try {
-			logged = userConverter.convertToBean(UserDaoDB.getInstance().get(userEmail));
-			List<TripBean> list = tripConverter.convertToListBean(TripDao.getInstance().getTrips());
+			logged = userConverter.convertToBean(User.getUserByEmail(userEmail));
+			List<TripBean> list = tripConverter.convertToListBean(Trip.getTrips(false, null));
 			
 			for (TripBean bean: list) {
 				Date dep = FormatManager.parseDate(bean.getDepartureDate());
@@ -51,8 +34,8 @@ public class GainPointsController {
 				}
 			}
 			return null;
-		} catch (DatabaseException | DBConnectionException | SQLException e1) {
-			throw new DatabaseException(e1.getMessage(), e1.getCause());
+		} catch (DatabaseException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
 		}
 	}
 	
@@ -65,19 +48,18 @@ public class GainPointsController {
 
 	public boolean verifyParticipation(String sessionEmail, TripBean tripBean) throws DatabaseException {
 		TripBeanConverter tripConverter = new TripBeanConverter();
+		ParticipationController partController = new ParticipationController(); 
 		Trip trip = tripConverter.convertFromBean(tripBean);
-		try {
-			if (ParticipationController.getInstance().checkParticipation(trip)) {
-				User user;
-				user = UserDaoDB.getInstance().get(sessionEmail);
-				user.addPoints(100);
-				UserStatsDao.getInstance().updateStats(sessionEmail, user.getStats().getPoints(), user.getStats().getOrganizerRating(), user.getStats().getTravelerRating());
-				return true;
-			} else {
-				return false;
-			}
-		} catch (DBConnectionException | SQLException e) {
-			throw new DatabaseException(e.getMessage(), e.getCause());
+		if (partController.checkParticipation(trip)) {
+			User user;
+			user = User.getUserByEmail(sessionEmail);
+			user.addPoints(100);
+			Session session = Cookie.getInstance().getSession(sessionEmail);
+			session.setUserPoints(user.getStats().getPoints());
+			user.updateStats();
+			return true;
+		} else {
+			return false;
 		}
 	}
 	

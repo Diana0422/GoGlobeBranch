@@ -45,18 +45,19 @@
     <div id="preferences-bg">
         <!-- preferences form-->
         <div id="preferences-form">
-        <h2>Insert information about your trip!</h2>
+        <h2 style="margin-bottom: 20px;">Insert information about your trip!</h2>
 <%
+	PlanTripController controller = new PlanTripController();	
+
 	if (request.getParameter("next-btn") != null){
 		try{	
 			planTripBean.setTripBean(tripBean);
 			if (planTripBean.validateForm()){
 				Date depDate = FormatManager.parseDate(tripBean.getDepartureDate());
 				Date retDate = FormatManager.parseDate(tripBean.getReturnDate());
-				long tripLength = PlanTripController.getInstance().calculateTripLength(depDate, retDate) + 1;
-				System.out.println(tripLength);
+				long tripLength = controller.calculateTripLength(depDate, retDate) + 1;
 				tripBean.setTripLength(tripLength);
-				tripBean.createDays();				
+				controller.addDays(tripBean);				
 				planTripBean.setPlanningDay(0);
 %>			
 				<jsp:forward page="planTrip.jsp"/>			
@@ -79,20 +80,24 @@
                 <div class="form-row">
                     <!-- Trip name-->
                     <div class="form-group col-md-6">
-                        <label for="inputDepDate" ><h4>Trip Title</h4></label>
+                        <h4>Trip Title</h4>
                         <input type="text" class="form-control" name="title" id="tripName" maxlength="25" placeholder="Enter trip name...">
-                
+                    </div>
+                    <!-- Trip country destination-->
+                    <div class="form-group col-md-6">
+                        <h4>Destination Country</h4>
+                        <input type="text" class="form-control" name="country" id="tripCountry" maxlength="25" placeholder="Enter destination country...">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputDepDate"><h4>Departure Date</h4></label>
+                        <h4>Departure Date</h4>
                         <input type="text" class="form-control" name="departureDate" id="depDate"
                         placeholder="dd/mm/yyyy">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputRetDate"><h4>Return Date</h4></label>
+                        <h4>Return Date</h4>
                         <input type="text" class="form-control" name="returnDate" id="retDate"
                         placeholder="dd/mm/yyyy" >
                     </div>
@@ -100,7 +105,7 @@
 
                 <div class="form-row form-categories">              
                     <div class="form-group col-md-6">
-                        <label for="selectCategory1"><h4>Trip category 1</h4></label>
+                        <h4>Trip category 1</h4>
         
                         <select class="custom-select" id="selectCategory1" name="category1">
                             <option selected value="none">Choose...</option>
@@ -111,7 +116,7 @@
                     </select>
                     </div>  
                     <div class="form-group col-md-6">
-                        <label for="selectCategory2"><h4>Trip category 2</h4></label>
+                        <h4>Trip category 2</h4>
         
                         <select class="custom-select" id="selectCategory2" name="category2">
                             <option selected value="none">Choose...</option>

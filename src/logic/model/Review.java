@@ -1,6 +1,12 @@
 package logic.model;
 
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
+
+import logic.persistence.dao.ReviewDao;
+import logic.persistence.exceptions.DBConnectionException;
+import logic.persistence.exceptions.DatabaseException;
 
 public class Review {
 	
@@ -59,6 +65,14 @@ public class Review {
 
 	public void setReviewer(User reviewer) {
 		this.reviewer = reviewer;
+	}
+	
+	public static List<Review> getReviewsByUser(String email) throws DatabaseException {
+		try {
+			return ReviewDao.getInstance().getUserReviews(email);
+		} catch (DBConnectionException | SQLException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
+		}
 	}
 
 }

@@ -3,7 +3,7 @@ package logic.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.view.GUIType;
+import logic.view.utils.GUIType;
 import logic.view.utils.GraphicControl;
 
 public class Session {

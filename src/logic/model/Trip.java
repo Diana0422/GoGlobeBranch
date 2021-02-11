@@ -1,14 +1,18 @@
 package logic.model;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import logic.control.FormatManager;
+import logic.persistence.dao.TripDao;
+import logic.persistence.exceptions.DBConnectionException;
 import logic.persistence.exceptions.DatabaseException;
 
 public class Trip {
 	
 	private String title;
+	private String country;
 	private int price;
 	private int ticketPrice;
 	private TripCategory category1;
@@ -41,9 +45,14 @@ public class Trip {
 		this.returnDate = FormatManager.parseDate(returnDate);
 	}
 	
-	public void addParticipant(User participant) throws DatabaseException {
-		getParticipants().add(participant);
-		participant.recalculateAttitude(this.category1, this.category2);
+	public boolean addParticipant(User participant) throws DatabaseException {
+		try {
+			getParticipants().add(participant);
+			participant.recalculateAttitude(this.category1, this.category2);
+			return TripDao.getInstance().saveParticipant(participant.getEmail(), this.title);
+		} catch (DBConnectionException | SQLException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
+		}
 	}
 	
 	public void setDays(List<Day> days) {
@@ -179,6 +188,46 @@ public class Trip {
 
 	public void setTicketPrice(int ticketPrice) {
 		this.ticketPrice = ticketPrice;
+	}
+	
+	public static Trip getTrip(String title) throws DatabaseException {
+		try {
+			return TripDao.getInstance().getTripByTitle(title);
+		} catch (DBConnectionException | SQLException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
+		}
+	}
+	
+	public static List<Trip> getTrips(boolean shared, TripCategory category) throws DatabaseException {
+		try {
+			if (category == null) {
+				if (shared) {
+					return TripDao.getInstance().getSharedTrips();
+				} else {
+					return TripDao.getInstance().getTrips();
+				}
+			} else {
+				return TripDao.getInstance().getTripsForCategory(category);
+			}
+		} catch (DBConnectionException | SQLException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
+		}
+	}
+	
+	public boolean storeTrip() throws DatabaseException {
+		try {
+			return TripDao.getInstance().saveTrip(this, this.shared);
+		} catch (DBConnectionException | SQLException e) {
+			throw new DatabaseException(e.getMessage(), e.getCause());
+		}
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 }
